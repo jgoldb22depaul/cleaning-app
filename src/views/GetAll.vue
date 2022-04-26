@@ -1,0 +1,136 @@
+<template>
+  <div class="w-screen h-screen bg-blue-400">
+    <Header/>
+    <p class="relative top-12 text-center font-bold text-2xl m-5 text-white">List of available posts</p>
+    <div class="flex flex-col">
+      <div class="w-full overflow-x-auto sm:-mx-6 lg:mx-auto lg:mt-12">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <table class="min-w-full">
+              <thead class="bg-yellow-400">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    address
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    zipcode
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    sqft
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    Check Out Date
+                  </th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    Check Out Time
+                  </th>
+                  
+                </tr>
+              </thead>
+              <tbody class="bg-white">       
+                  <tr v-for="result in results" :key="result.uid">
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="ml-4">
+                            <div class="text-sm font-medium text-gray-500 uppercase">
+                              {{ result.address }}         
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="ml-4">
+                            <div class="text-sm font-medium text-gray-500">
+                              {{ result.zipcode }}         
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="ml-4">
+                            <div class="text-sm font-medium text-gray-500">
+                              {{ result.sqft }}         
+                            </div>
+                          </div>
+                        </div>
+                      </td> 
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="ml-4">
+                            <div class="text-sm font-medium text-gray-500">
+                              {{ result.checkoutdate }}         
+                            </div>
+                          </div>
+                        </div>
+                      </td> 
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center">
+                          <div class="ml-4">
+                            <div class="text-sm font-medium text-gray-500">
+                              {{ result.checkouttime }}         
+                            </div>
+                          </div>
+                        </div>
+                      </td> 
+                      <td class="px-4 py-2 hover:bg-gray-100 whitespace-nowrap text-center text-sm font-medium">
+                        <router-link :to="{ name:'Appointment', params: { id: result.id } }">
+                          <div class="lg:p-3 text-indigo-600">View Appointment</div>     
+                        </router-link>                   
+                      </td> 
+                      <td class="px-4 py-2 hover:bg-gray-100 whitespace-nowrap text-center text-sm font-medium">
+                        <router-link :to="{ name:'GetOnePost', params: { id: result.id } }">
+                          <div class="lg:p-3 text-indigo-600">Edit</div>     
+                        </router-link>                   
+                      </td> 
+                      <td class="px-4 py-2 whitespace-nowrap text-center text-sm font-medium hover:bg-red-50">
+                        <router-link :to="{ name:'Delete', params: { id: result.id } }">
+                          <div class="lg:p-3 text-indigo-600">Delete</div>     
+                        </router-link>                   
+                      </td>             
+                  </tr>                                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Header from '../components/Header.vue'
+import axios from '@/axios'
+export default {
+  components: {Header},
+  data() {
+    return {
+      results: [ ],
+      postsNumber: null
+    } 
+  },
+  mounted() {
+    axios
+        
+        .get('/api/post', {
+          params: {
+            uid: localStorage.currentUser,
+            
+          }
+        })
+        .then((resp) => {
+          console.log(resp.data);
+          this.results = resp.data.data;
+          this.postsNumber = resp.data.length
+        })
+  },
+
+  methods: {}
+}
+</script>
+
+<style> </style>
+
+
+
