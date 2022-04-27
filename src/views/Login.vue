@@ -1,7 +1,7 @@
 <template>
-  <div class="w-screen h-screen bg-purple-700">
-    <Header/>
-    <div class="relative top-10 text-white text-4xl lg:text-6xl font-bold">Login</div>
+  <div class="w-screen h-screen bg-blue-400">
+    
+    <div class="text-center font-bold text-2xl px-6 py-7 text-white">Enter your login info.</div>
     <form @submit.prevent="RequestLogin">
       <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl bg-white">
         <input type="text" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="username" spellcheck="false" placeholder="Username">
@@ -16,7 +16,7 @@
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table class="min-w-full">
-              <thead class="bg-yellow-400">
+              <thead class="bg-purple-500">
                 <tr>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     Username
