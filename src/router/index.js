@@ -13,12 +13,18 @@ import CheckAvailable from '../views/CheckAvailable.vue'
 import Finalize from '../views/Finalize.vue'
 import AccountPage from '../views/AccountPage.vue'
 import Appointment from '../views/Appointment.vue'
+import DeleteAccount from '../views/DeleteAccount.vue'
 
 const routes = [
   { 
     path: '/',
     name: 'Login',
     component: Login
+  },
+  { 
+    path: '/deleteaccount',
+    name: 'DeleteAccount',
+    component: DeleteAccount
   },
   {
     path: '/cleaningServices',
