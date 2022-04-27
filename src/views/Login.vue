@@ -130,7 +130,7 @@ export default {
         if(resp.data[0]){
           localStorage.setItem('currentUserName', resp.data[0].firstname)
           localStorage.setItem('currentUser', resp.data[0].username)
-          this.$router.push({ name: 'Create' });
+          this.$router.push({ name: 'Create', params : {id : resp.data[0].username }});
         }
          // go to next page -> successful login
       })

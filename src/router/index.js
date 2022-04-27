@@ -28,12 +28,12 @@ const routes = [
     component: DeleteAccount
   },
   { 
-    path: '/Reschedule',
+    path: '/Reschedule/:id',
     name: 'Reschedule',
     component: Reschedule
   },
   {
-    path: '/cleaningServices',
+    path: '/cleaningServices/:id',
     name: 'CleaningServices',
     component: CleaningServices
   },
@@ -43,52 +43,52 @@ const routes = [
     component: NewAccount
   },
   { 
-    path: '/options',
+    path: '/options/:id',
     name: 'ServiceOptions',
     component: ServiceOptions
   },
   {
-    path: '/availability',
+    path: '/availability/:id',
     name: 'CheckAvailable',
     component: CheckAvailable
   },
   { 
-    path: '/appointment',
+    path: '/appointment/:id',
     name: 'Appointment',
     component: Appointment
   },
   {
-    path: '/finalize',
+    path: '/finalize/:id',
     name: 'Finalize',
     component: Finalize
   },
   {
-    path: '/accountpage',
+    path: '/accountpage/:id',
     name: 'AccountPage',
     component: AccountPage
   },
   {
-    path: '/Home',
+    path: '/Home/:id',
     name: 'Home',
     component: Home
   },
   {
-    path: '/create/post',
+    path: '/create/post/:id',
     name: 'Create',
     component: Create
   },
   {
-    path: '/post',
+    path: '/post/:id',
     name: 'GetAll',
     component: GetAll
   },
   {
-    path: '/post/id',
+    path: '/post/:id',
     name: 'GetOnePost',
     component: GetOnePost
   },
   {
-    path: '/delete/post/id',
+    path: '/delete/post/:id',
     name: 'Delete',
     component: Delete
   },

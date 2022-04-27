@@ -94,7 +94,7 @@ export default {
       //   });
         
       
-      this.$router.push({ name: 'CleaningServices' });
+      this.$router.push({ name: 'CleaningServices', params: {sqft : this.sqft} });
 
       //convert data properties back into empty strings
       // this.title = ''

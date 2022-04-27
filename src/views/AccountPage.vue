@@ -3,7 +3,7 @@
     <Header/>
     <div class="text-center font-bold text-5xl m-10 text-white">Account Settings</div>
 	<p class="relative top-5 text-white text-1xl lg:text-3xl font-bold"> Change Account Password: </p>
-	<form @submit.prevent="changePassword">
+	<form @submit.prevent="CheckPassword">
       <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl bg-white">
         <label for="oldpassword">Old Password</label>
 		<input type="text" id="new" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="oldpassword" spellcheck="false" placeholder="current password">
@@ -34,6 +34,12 @@ export default {
 	   } 
   },
   methods: {
+  CheckPassword(){
+	 const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+	 if(specialChars.test(this.newpassword)){
+	 this.changePassword()}
+	 
+  },
 	changePassword(){
 		 axios
           .post('/accountpage', {
