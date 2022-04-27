@@ -70,7 +70,7 @@ export default {
         .get('/getavail', {
           params: {
             date: this.checkoutDate,
-            cid: this.cid
+            cid: this.cleaningService
           }
         })
         .then((resp) => {

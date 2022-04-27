@@ -1,7 +1,7 @@
 <template>
   <div class="w-screen h-screen bg-blue-400">
     <Header/>
-    <p class="relative top-12 text-center font-bold text-2xl m-5 text-white">List of available posts</p>
+    <p class="relative top-12 text-center font-bold text-2xl m-5 text-white">List of available your Airbnb bookings</p>
     <div class="flex flex-col">
       <div class="w-full overflow-x-auto sm:-mx-6 lg:mx-auto lg:mt-12">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -80,8 +80,8 @@
                         </router-link>                   
                       </td>    
                       <td class="px-4 py-2 hover:bg-gray-100 whitespace-nowrap text-center text-sm font-medium">
-                        <router-link :to="{ name:'Appointment', params: { id: result.rid, sqft: result.sqft } }">
-                          <div class="lg:p-3 text-indigo-600">Appointment</div>     
+                        <router-link :to="{ name:'Appointment', params: { id: result.rid, sqft: result.sqft  } }">
+                          <div class="lg:p-3 text-indigo-600">Cleaning Appointment</div>     
                         </router-link>                   
                       </td> 
                       

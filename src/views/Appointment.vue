@@ -1,22 +1,22 @@
 <template>
   <div class="w-screen h-screen bg-blue-400">
     <Header/>
-    <div class="text-center font-bold text-2xl m-10 text-white">Viewing your appointment with, {{results.cid}}</div>
+    <div class="text-center font-bold text-2xl m-10 text-white">Viewing your appointment with, {{cleaningService}}</div>
     <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl bg-white">
         <router-link :to="{name: 'CleaningServices'}" :style= "{ 'color' : 'blue'}"><p class="t">Dont see a cleaning appointment? click here to make one.</p></router-link>
         <div class="text-center font-bold text-2xl m-10"> Cleaning company.  </div>
-            <li> {{results.cid}}</li>
+            <li> {{cleaningService}}</li>
         <div class="text-center font-bold text-2xl m-10"> Appointment date.  </div>
         <li>
-            {{ results.to_char }}
+            {{ Dates }}
         </li>
         <div class="text-center font-bold text-2xl m-10"> Appointment time.  </div>
         <li>
-            {{ results.time }}
+            {{ Times }}
         </li>
         <div class="text-center font-bold text-2xl m-10"> Estimated price.  </div>
         <li>
-            {{ results.price }}
+            {{ total }}
         </li>
         <div class="flex justify-end mt-5">
             <input @click="cancel" type="button" value="Cancel" class="border border-gray-200 rounded-2xl py-2 px-4 font-thin cursor-pointer text-gray-700 ml-2 bg-gray-200 hover:bg-gray-300">
@@ -66,8 +66,17 @@ export default {
         })
         .then((resp) => {
           console.log(resp)
+         
           this.results = resp.data.data
-          localStorage.setItem("cleaningService", this.results.cid); 
+          if (this.results) {
+              localStorage.setItem("cleaningService", this.results.cid); 
+              this.Dates = this.results.to_char
+              this.Times = this.results.time
+              this.total = this.results.price
+              this.cleaningService =this.results.cid
+          } else {
+
+          }
         })
         
 

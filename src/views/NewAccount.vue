@@ -2,7 +2,7 @@
   <div class="w-screen h-screen bg-blue-400">
     <Header/>
 	<div class="text-center font-bold text-2xl px-6 py-7 text-white">Create a new account.</div>
-    <form @submit.prevent="RequestCreateAccount">
+   <form @submit.prevent="CheckPassword">
       <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl bg-white">
         <input type="text" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="username" spellcheck="false" placeholder="Username">
         <input type="password" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="password" spellcheck="false" placeholder="Password">
@@ -58,12 +58,18 @@ export default {
 
 
   methods: {
+  CheckPassword(){
+	 const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+	 if(specialChars.test(this.password)){
+	 this.RequestCreateAccount()}
+	 
+  },
     RequestCreateAccount() {
       axios.post('/newaccount', {
         username: this.username,
         password: this.password,
 		    firstname: this.firstname,
-		lastname: this.lastname
+		    lastname: this.lastname
       })
       .then((resp) => {
         console.log(resp);
@@ -79,8 +85,8 @@ export default {
       //convert data properties back into empty strings
       this.username = ''
       this.password = ''
-	  this.firstname = ''
-	  this.lastname = ''
+	    this.firstname = ''
+	    this.lastname = ''
     }  
      
   }
