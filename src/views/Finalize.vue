@@ -69,9 +69,35 @@ export default {
         }
     },
     save(){
-        localStorage.setItem('options', this.checkedNames)
-        localStorage.setItem('price', this.total)
-        this.$router.push({ name: 'CheckAvailable' });
+        axios
+          .post('/finalize', {
+            rid: localStorage.getItem('rid'),
+            cid: this.cleaningService,
+            time: this.Times,
+            date: this.Dates,
+            price: localStorage.getItem('price')
+          })
+          .then((response) => {
+            this.$router.push({ name: 'GetAll' });
+          }, (error) => {
+            console.log(error);
+          });
+
+      // fetch('http://localhost:4000/api/create/post', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify( newPost )
+      // })
+      //   .then(res => res.json())
+      //   .then(data => {
+      //     console.log('Success: New post added')
+      //   })
+      //   .catch((error) => {
+      //     console.error('Error:', error);
+      //   });
+        
+      
+      
     }
   }
 }

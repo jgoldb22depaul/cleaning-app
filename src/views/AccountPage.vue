@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen bg-purple-700">
+  <div class="w-screen h-screen bg-blue-400">
     <Header/>
     <div class="text-center font-bold text-5xl m-10 text-white">Account Settings</div>
 	<p class="relative top-5 text-white text-1xl lg:text-3xl font-bold"> Change Account Password: </p>

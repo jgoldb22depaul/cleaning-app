@@ -14,6 +14,7 @@ import Finalize from '../views/Finalize.vue'
 import AccountPage from '../views/AccountPage.vue'
 import Appointment from '../views/Appointment.vue'
 import DeleteAccount from '../views/DeleteAccount.vue'
+import Reschedule from '../views/Reschedule.vue'
 
 const routes = [
   { 
@@ -25,6 +26,11 @@ const routes = [
     path: '/deleteaccount',
     name: 'DeleteAccount',
     component: DeleteAccount
+  },
+  { 
+    path: '/Reschedule',
+    name: 'Reschedule',
+    component: Reschedule
   },
   {
     path: '/cleaningServices',

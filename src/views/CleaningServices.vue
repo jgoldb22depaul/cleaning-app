@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen bg-purple-700">
+  <div class="w-screen h-screen bg-blue-400">
     <Header/>
     <div class="flex flex-col">
       <div class="w-full overflow-x-auto sm:-mx-6 lg:mx-auto lg:mt-12">
@@ -62,7 +62,7 @@ export default {
     return {
       selectedCleaningService: null,
       firstName: localStorage.getItem("currentUserName"),
-      sqft: localStorage.getItem("sqft"),
+      sqft: 0,
       cleaningServices: [ ],
       showModal: false,
       title : '',
@@ -71,7 +71,9 @@ export default {
     }
   },
   mounted() {
-
+    if (localStorage.sqft){
+      this.sqft = localStorage.sqft
+    }
     axios
         .get('/getCleaningServices')
         .then((resp) => {

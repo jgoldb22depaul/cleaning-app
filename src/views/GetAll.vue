@@ -7,7 +7,7 @@
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table class="min-w-full">
-              <thead class="bg-yellow-400">
+              <thead class="bg-red-400">
                 <tr>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                     address
@@ -60,7 +60,7 @@
                         <div class="flex items-center">
                           <div class="ml-4">
                             <div class="text-sm font-medium text-gray-500">
-                              {{ result.checkoutdate }}         
+                              {{ result.to_char }}         
                             </div>
                           </div>
                         </div>
@@ -74,21 +74,18 @@
                           </div>
                         </div>
                       </td> 
-                      <td class="px-4 py-2 hover:bg-gray-100 whitespace-nowrap text-center text-sm font-medium">
-                        <router-link :to="{ name:'Appointment', params: { id: result.id } }">
-                          <div class="lg:p-3 text-indigo-600">View Appointment</div>     
-                        </router-link>                   
-                      </td> 
-                      <td class="px-4 py-2 hover:bg-gray-100 whitespace-nowrap text-center text-sm font-medium">
-                        <router-link :to="{ name:'GetOnePost', params: { id: result.id } }">
-                          <div class="lg:p-3 text-indigo-600">Edit</div>     
-                        </router-link>                   
-                      </td> 
                       <td class="px-4 py-2 whitespace-nowrap text-center text-sm font-medium hover:bg-red-50">
-                        <router-link :to="{ name:'Delete', params: { id: result.id } }">
-                          <div class="lg:p-3 text-indigo-600">Delete</div>     
+                        <router-link :to="{ name:'Delete', params: { id: result.rid } }">
+                          <div class="lg:p-3 text-indigo-600">Update/Delete</div>     
                         </router-link>                   
-                      </td>             
+                      </td>    
+                      <td class="px-4 py-2 hover:bg-gray-100 whitespace-nowrap text-center text-sm font-medium">
+                        <router-link :to="{ name:'Appointment', params: { id: result.rid, sqft: result.sqft } }">
+                          <div class="lg:p-3 text-indigo-600">Appointment</div>     
+                        </router-link>                   
+                      </td> 
+                      
+                               
                   </tr>                                
               </tbody>
             </table>

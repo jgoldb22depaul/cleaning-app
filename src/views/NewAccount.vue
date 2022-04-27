@@ -133,9 +133,7 @@ export default {
       .then((resp) => {
         console.log(resp);
         if(resp.data){
-          localStorage.setItem('currentUserName', this.firstname)
-          localStorage.setItem('currentUser', this.username)
-          this.$router.push({ name: 'Create' });
+          this.$router.push({ name: 'Login' });
         }
          // go to next page -> successful login
       })

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen bg-purple-700">
+  <div class="w-screen h-screen bg-blue-400">
      <div class="relative top-10 text-white text-4xl lg:text-4xl font-bold">Are you sure you want to delete your account?</div>
 	 <br>
 	  <br>

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen bg-purple-700">
+  <div class="w-screen h-screen bg-blue-400">
     <Header/>
     <div class="text-center font-bold text-2xl m-10 text-white">What's the AirBnb reservation we need to work around?</div>
     <form @submit.prevent="createNewPost">
@@ -69,6 +69,7 @@ export default {
           })
           .then((response) => {
             console.log('helllllllo')
+            localStorage.setItem("rid", response.data[0].rid);
             localStorage.setItem("address", this.address);
             localStorage.setItem("zipcode", this.zipcode);
             localStorage.setItem("sqft", this.sqft);
