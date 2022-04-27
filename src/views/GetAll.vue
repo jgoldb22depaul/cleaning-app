@@ -1,7 +1,7 @@
 <template>
   <div class="w-screen h-screen bg-blue-400">
     <Header/>
-    <p class="relative top-12 text-center font-bold text-2xl m-5 text-white">List of available your Airbnb bookings</p>
+    <p class="relative top-12 text-center font-bold text-2xl m-5 text-white">List of your Airbnb bookings</p>
     <div class="flex flex-col">
       <div class="w-full overflow-x-auto sm:-mx-6 lg:mx-auto lg:mt-12">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
