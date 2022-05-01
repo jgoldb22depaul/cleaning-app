@@ -3,6 +3,7 @@
     <Header/>
     <p class="relative top-52 text-white text-4xl lg:text-6xl font-bold">welcome, {{this.username}}</p>
     <p class="relative top-56 text-white lg:text-3xl">AirBnb Scheduler Service</p>
+    
   </div>
 </template>
 
@@ -15,6 +16,7 @@ export default {
   data() {
     return {
       username: 'hello',
+      rating: 0
     } 
   },
   mounted() {

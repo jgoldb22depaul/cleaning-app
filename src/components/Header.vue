@@ -5,14 +5,18 @@
     <router-link :to="{name: 'GetAll', params: {id : username}}"><p class="text-white">Schedule</p></router-link>
 	<router-link :to="{name: 'Login', params: {id : username}}"><p class="text-white">Logout</p></router-link>
 	<router-link :to="{name: 'AccountPage', params: {id : username}}"><p class="text-white">Account Settings</p></router-link>
+  
   </div>
 </template>
 
 <script>
+
 export default {
+  
   data() {
     return {
-      username: localStorage.currentUser || '' 
+      username: localStorage.currentUser || '' ,
+      rating: 0
     } 
   }
 }
