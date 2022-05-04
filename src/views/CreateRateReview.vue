@@ -51,7 +51,6 @@ components: {Header},
 				}
 		})
 			.then((resp) =>{
-				console.log( resp.data);
 				this.results = resp.data;
 				console.log("results are: " + this.results)
 				this.cid = this.results.id;
@@ -61,17 +60,17 @@ components: {Header},
   },
    methods: {
 	PostReview(){
+		console.log(this.id);
+		console.log(this.rid);
 		axios
 			.post('/createratereview',{
-				params: {
-					
 					cid: this.cid,
-					userid: this.id, 
-					resid: this.rid, 
+					id: this.id, 
+					rid: this.rid, 
 					review: this.review, 
 					subject: this.subject
 		
-				}
+				
 			})
 				
   }
