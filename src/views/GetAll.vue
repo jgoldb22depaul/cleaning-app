@@ -84,9 +84,13 @@
                           <div class="lg:p-3 text-indigo-600">Cleaning Appointment</div>     
                         </router-link>                   
                       </td> 
-                      
-                               
-                  </tr>                                
+					   
+					  					  
+					  <td class="px-4 py-2 whitespace-nowrap text-center text-sm font-medium hover:bg-red-50">
+                          <input @click="MarkCompleted(result.rid)" type="button" value="Mark Complete" class="border border-gray-200 rounded-2xl py-2 px-4 font-thin cursor-pointer text-gray-700 ml-2 bg-gray-200 hover:bg-gray-300">   
+					  </td>
+                      </tr>  
+					  		                       
               </tbody>
             </table>
           </div>
@@ -107,6 +111,7 @@ export default {
       postsNumber: null
     } 
   },
+ 
   mounted() {
     axios
         
@@ -116,14 +121,23 @@ export default {
             
           }
         })
-        .then((resp) => {
-          console.log(resp.data);
-          this.results = resp.data.data;
-          this.postsNumber = resp.data.length
+        .then((response) => {
+          console.log(response.data);
+          this.results = response.data.data;
+          this.postsNumber = response.data.length
         })
   },
 
-  methods: {}
+  methods: {
+   MarkCompleted(resid){
+	  const confirmDeletion = confirm('Updating will delete any appointment made!')
+	  if(confirmDeletion){
+         this.$router.push({ name: 'CreateRateReview', params: {id: localStorage.currentUser, rid: resid}});
+      } 
+	  
+	  
+  }
+  }
 }
 </script>
 

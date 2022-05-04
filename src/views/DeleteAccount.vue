@@ -4,7 +4,7 @@
 	 <br>
 	  <br>
 	 <div class = "inline">
-		<button v-on:click="requestDeleteUser()"  class = "border border-gray-200 rounded-xl py-8 px-16 font-bold cursor-pointer text-4xl text-white ml-2 bg-indigo-600">Yes</button>
+		<button v-on:click="requestDeleteUser"  class = "border border-gray-200 rounded-xl py-8 px-16 font-bold cursor-pointer text-4xl text-white ml-2 bg-indigo-600">Yes</button>
  </div>
 	<div class="inline">
 
