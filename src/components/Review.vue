@@ -105,8 +105,9 @@ export default {
         line-height: 14px;
         
     }
-    .rating-bar{
-        padding-bottom: 30px;
+    .m_dn{
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.5);
         
     }
     .date{
@@ -115,7 +116,7 @@ export default {
     }
     .subject {
         
-        font-size:20pt;
+        font-size:15pt;
         font-weight: bolder;
         text-align: justify;
         padding-top: 10px;

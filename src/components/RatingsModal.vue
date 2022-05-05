@@ -81,13 +81,11 @@ export default {
 }
 
 .vue-modal {
-  /* Hidden by default */
-    position: fixed; /* Stay in place front is invalid - may break your css so removed */  
-    padding-top: 5px; /* Location of the box - don't know what this does?  If it is to move your modal down by 100px, then just change top below to 100px and remove this*/
-     /* Full height top and bottom 0 */
-    overflow: auto; /* Enable scroll if needed */
-    
-    z-index: 9999; /* Sit on top - higher than any other z-index in your site*/
+  
+    position: fixed; 
+    padding-top: 5px; 
+    overflow: auto; 
+
 }
 .vue-modal-inner {
     max-width: 250px;
