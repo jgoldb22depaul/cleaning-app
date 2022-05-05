@@ -1,11 +1,14 @@
 <template>
   <div class="w-screen h-screen bg-blue-400">
   <Header/>
+
+  
+  
   <form @submit.prevent="PostReview">
-	 <div class="text-center font-bold text-2xl m-10 text-white">Hi, {{id}} Write a review for your appointment for res : {{rid}} with {{cid}}</div>
+	 
     <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl bg-white">
-        <router-link :to="{name: 'GetAll'}" :style= "{ 'color' : 'blue'}"><p class="t">Don't want to leave a review?.</p></router-link>
-   
+	<router-link :to="{name: 'GetAll'}" :style= "{ 'color' : 'blue'}"><p class="t">Skip this step.</p></router-link>
+	<div class="text-center font-bold text-2xl m-10 text-blue">Leave a review for your appointment with : {{cleanname}}</div>
 		<div class="text-center font-bold text-2xl m-10"> Review Subject Line:  </div>
        <input type="text" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="subject" spellcheck="false" placeholder="Write a brief subject for your review">
 
@@ -26,9 +29,10 @@
 <script>
 import axios from '@/axios'
 import Header from '../components/Header.vue'
+import StarRating from 'vue-star-rating'
 
 export default {
-components: {Header},
+components: {Header, StarRating},
   data() {
     return {
       id: this.$route.params.id || localStorage.currentUser,
@@ -37,7 +41,8 @@ components: {Header},
 	  cid: 0, 
 	  review: '', 
 	  subject: '',
-	  results: []
+	  results: [],
+	  date: ''
     }
   },
  mounted() {
@@ -55,6 +60,7 @@ components: {Header},
 				console.log("results are: " + this.results)
 				this.cid = this.results.id;
 				this.cleanname = this.results.name;
+				this.date = this.results.date
 				
 				})
   },
@@ -68,10 +74,12 @@ components: {Header},
 					id: this.id, 
 					rid: this.rid, 
 					review: this.review, 
-					subject: this.subject
+					subject: this.subject,
+					date: this.date
 		
 				
 			})
+			this.$router.push({ name: 'GetAll'});
 				
   }
 }

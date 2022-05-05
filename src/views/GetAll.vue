@@ -132,7 +132,7 @@ export default {
    MarkCompleted(resid){
 	  const confirmDeletion = confirm('Updating will delete any appointment made!')
 	  if(confirmDeletion){
-         this.$router.push({ name: 'CreateRateReview', params: {id: localStorage.currentUser, rid: resid}});
+         this.$router.push({ name: 'CreateRate', params: {id: localStorage.currentUser, rid: resid}});
       } 
 	  
 	  
