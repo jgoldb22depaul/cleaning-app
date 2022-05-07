@@ -19,38 +19,20 @@
         <div class="flex justify-end mt-5">
           <input type="submit" value="Next Step" class="border border-gray-200 rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-indigo-600">
         </div>
-        <div class="pad">
-        <Review 
-          firstName = "Jonathon Smingler" 
-          cleanRating = "4" 
-          speedRating = "4" 
-          proRating="3"
-          date="12 Mon 1999" 
-          review = "I found service to be really good. Wow, my house is so damn clean now, hell yeah.
-          honesly, my house has never ever looked so fucking good it blows my goddamn mind holy cheeseballs brother."/>
-        </div>
-        <div class="pad">
-        <Review 
-        
-          firstName = "Jonathon Smingler" 
-          cleanRating = "1" 
-          speedRating = "2" 
-          proRating="2"
-          date="12 Mon 1999" 
-          review = "I found service to be really good. Wow, my house is so damn clean now, hell yeah.
-          honesly, my house has never ever looked so fucking good it blows my goddamn mind holy cheeseballs brother."/>
-        </div>
+        <ReviewFeed/>
       </div>
     </form>
+    
   </div>
 </template>
 
 <script>
 import Header from '../components/Header.vue'
-import Review from '../components/Review.vue'
+import ReviewFeed from '../components/ReviewFeed.vue'
+
 import axios from '@/axios'
 export default {
-  components: {Header, Review},
+  components: {ReviewFeed, Header},
   data() {
     return {
         address: "",

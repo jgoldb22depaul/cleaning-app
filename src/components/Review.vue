@@ -38,9 +38,23 @@
                 Quality service, quick and cheap.
                 </h1>
                 
-                <h2 class= "reviewbox">
+                <h2 class= "reviewbox pb-4">
                     {{review}}
                 </h2>
+                <div class="pt-4 flex justify-between border-t">
+                    <button class=" hover:bg-red-200 text-gray-800 font-bold py-2 px-2 rounded-full  items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="gray">
+                            <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                        </svg>
+                    </button>
+                    <button class=" hover:bg-red-200 text-gray-800 font-bold py-2 px-2 rounded flex-inline items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="gray" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                        </svg>
+                    </button>
+                    <span class="text-white"> hello </span>
+
+                </div>
             </div>
         </div>
   </div>
@@ -98,6 +112,7 @@ export default {
         border-radius: 10px;
         
         padding: 20px 15px;
+        padding-bottom: 3px;
     }
     .marg {
         color: rgba(0, 0, 0, 0.5);
