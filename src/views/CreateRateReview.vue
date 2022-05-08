@@ -42,7 +42,8 @@ components: {Header, StarRating},
 	  review: '', 
 	  subject: '',
 	  results: [],
-	  date: ''
+	  date: '',
+	  apptaid: this.$route.params.apptaid || localStorage.aid,
     }
   },
  mounted() {
@@ -52,7 +53,7 @@ components: {Header, StarRating},
 		.get('/createratereview', {
 			params: {
 		
-			rid: this.rid
+			aid: this.apptaid
 				}
 		})
 			.then((resp) =>{
@@ -60,7 +61,8 @@ components: {Header, StarRating},
 				console.log("results are: " + this.results)
 				this.cid = this.results.id;
 				this.cleanname = this.results.name;
-				this.date = this.results.date
+				console.log(this.results.date);
+				this.date = this.results.date;
 				
 				})
   },
