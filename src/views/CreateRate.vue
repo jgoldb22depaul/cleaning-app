@@ -7,7 +7,7 @@
   <form @submit.prevent="PostRate">
   
   
-  <div class="text-center font-bold text-2xl m-10 text-blue">Hi, {{id}} Leave a rating for your appointment with: {{cleanname}}</div>
+  <div class="text-center font-bold text-2xl m-10 text-blue">Leave a rating for your appointment with: {{cleanname}}</div>
   <transition name="fade">
   <div class="modal modal-open vue-modal">
     <div class="vue-modal-inner">
