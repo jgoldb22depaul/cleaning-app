@@ -15,6 +15,7 @@
         
         
         <div class="rating"> 
+			<div class="text-center text-2xl">
             Cleanliness 
 			<br>
             <star-rating v-model:rating="clean"  
@@ -23,9 +24,11 @@
                                         :show-rating="false"
                                         :active-color="[color, 'orange','gold', 'yellowgreen']"
 										:inline="true"/>
+			</div>
         </div>
 		<br>
         <div class="rating"> 
+		<div class="text-center text-2xl">
             Professionalism
 				<br>
             <star-rating v-model:rating="pro"  
@@ -34,10 +37,11 @@
                                         :show-rating="false"
                                         :active-color="[color, 'orange','gold', 'yellowgreen']"
 										:inline="true"/>
-										
+		</div>
         </div>
 		<br>
         <div class="rating"> 
+		<div class="text-center text-2xl">
             Speed 
 				<br>
             <star-rating v-model:rating="speed"  
@@ -46,9 +50,11 @@
                                         :show-rating="false"
                                         :active-color="[color, 'orange','gold', 'yellowgreen']"
 										:inline="true"/>
+		</div>
         </div>
 		<br>
 		<div class="rating"> 
+		<div class="text-center text-2xl">
             Punctuality 
 			<br>
             <star-rating v-model:rating="pun"  
@@ -58,6 +64,7 @@
                                         :active-color="[color, 'orange','gold', 'yellowgreen']"
 										:inline="true"/>
         </div>
+		</div>
         
         
       </div>
