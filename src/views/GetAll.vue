@@ -108,7 +108,14 @@ export default {
   data() {
     return {
       results: [ ],
-      postsNumber: null
+      postsNumber: null,
+	  apptresults: [], 
+	  apptaid: 0, 
+	  apptrid: 0, 
+	  apptcid: '', 
+	  appttime: '',
+	  apptdate: '',
+	  apptprice: 0
     } 
   },
  
@@ -130,14 +137,55 @@ export default {
 
   methods: {
    MarkCompleted(resid){
-	  const confirmDeletion = confirm('Updating will delete any appointment made!')
-	  if(confirmDeletion){
-         this.$router.push({ name: 'CreateRate', params: {id: localStorage.currentUser, rid: resid}});
+	axios
+		.get('/api/getappt', {
+			params: {
+				uid: localStorage.currentUser,
+				resid: resid
+				}
+			})
+		.then((resp) => {
+          console.log('in mark complete: ' + resp.data.aid);
+		  this.apptaid = resp.data.aid;
+		  this.apptrid = resp.data.rid;
+		  this.apptcid = resp.data.cid;
+		  this.appttime = resp.data.time;
+		  this.apptdate = resp.data.date;
+		  this.apptprice = resp.data.price;
+		  console.log(this.apptaid)
+		   if(this.apptaid > 0){
+			console.log(this.apptaid);
+			const confirmDeletion = confirm('Marking as complete will delete the appointment!')
+			if(confirmDeletion){
+				this.CopyAppt(this.apptaid, this.apptrid, this.apptcid, this.appttime, this.apptdate, this.apptprice);
+				this.DeleteAppt(this.apptaid);
+				this.$router.push({ name: 'CreateRate', params: {id: localStorage.currentUser, rid: resid, apptaid: this.apptaid}});
       } 
+	  }
 	  
+		  
+        })
 	  
+  },
+  CopyAppt(aid, rid, cid, time, date, price){
+  axios
+	.post('/api/pastappt', {
+		apptaid: aid,
+		apptrid: rid, 
+		apptcid: cid, 
+		appttime: time,
+		apptdate: date, 
+		apptprice: price
+		})
+  },
+  DeleteAppt(aid){
+  axios
+	.post('/api/deleteappt', {
+		aid: aid,
+		})
   }
   }
+  
 }
 </script>
 

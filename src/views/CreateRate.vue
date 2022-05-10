@@ -3,11 +3,11 @@
   <Header/>
  
   <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl bg-white">
-   <router-link :to="{name: 'CreateRateReview', params: {id: this.id, rid: this.rid}}" :style= "{ 'color' : 'blue'}"><p class="t">Skip this step.</p></router-link>
+   <router-link :to="{name: 'GetAll'}" :style= "{ 'color' : 'blue'}"><p class="t">Skip this step.</p></router-link>
   <form @submit.prevent="PostRate">
   
   
-  <div class="text-center font-bold text-2xl m-10 text-blue">Hi, {{id}} Leave a rating for your appointment with: {{cleanname}}</div>
+  <div class="text-center font-bold text-2xl m-10 text-blue">Leave a rating for your appointment with: {{cleanname}}</div>
   <transition name="fade">
   <div class="modal modal-open vue-modal">
     <div class="vue-modal-inner">
@@ -15,6 +15,7 @@
         
         
         <div class="rating"> 
+			<div class="text-center text-2xl">
             Cleanliness 
 			<br>
             <star-rating v-model:rating="clean"  
@@ -23,9 +24,11 @@
                                         :show-rating="false"
                                         :active-color="[color, 'orange','gold', 'yellowgreen']"
 										:inline="true"/>
+			</div>
         </div>
 		<br>
         <div class="rating"> 
+		<div class="text-center text-2xl">
             Professionalism
 				<br>
             <star-rating v-model:rating="pro"  
@@ -34,10 +37,11 @@
                                         :show-rating="false"
                                         :active-color="[color, 'orange','gold', 'yellowgreen']"
 										:inline="true"/>
-										
+		</div>
         </div>
 		<br>
         <div class="rating"> 
+		<div class="text-center text-2xl">
             Speed 
 				<br>
             <star-rating v-model:rating="speed"  
@@ -46,9 +50,11 @@
                                         :show-rating="false"
                                         :active-color="[color, 'orange','gold', 'yellowgreen']"
 										:inline="true"/>
+		</div>
         </div>
 		<br>
 		<div class="rating"> 
+		<div class="text-center text-2xl">
             Punctuality 
 			<br>
             <star-rating v-model:rating="pun"  
@@ -58,6 +64,7 @@
                                         :active-color="[color, 'orange','gold', 'yellowgreen']"
 										:inline="true"/>
         </div>
+		</div>
         
         
       </div>
@@ -93,17 +100,22 @@ components: {Header, StarRating},
 	  pro: 0,
 	  speed: 0,
 	  pun: 0,
-	  date: ''
+	  date: '', 
+	  apptaid: this.$route.params.apptaid || localStorage.aid,
+	  apptrid: 0,
+	  apptcid: '', 
+	  appttime: '',
+	  apptprice: 0
     }
   },
  mounted() {
     if (this.id) localStorage.setItem("currentUser", this.id); 
 	if (this.rid) localStorage.setItem("rid", this.rid);  
+	if (this.apptaid) localStorage.setItem("aid", this.apptaid); 
 	axios
 		.get('/createrate', {
 			params: {
-		
-			rid: this.rid
+			aid: this.apptaid
 				}
 		})
 			.then((resp) =>{
@@ -112,7 +124,6 @@ components: {Header, StarRating},
 				this.cid = this.results.id;
 				this.cleanname = this.results.name;
 				this.date = this.results.date;
-				
 				})
   },
    methods: {
@@ -129,7 +140,7 @@ components: {Header, StarRating},
 			 date: this.date
 		
 		})
-	this.$router.push({ name: 'CreateRateReview', params: {id: this.id, rid: this.rid}});
+	this.$router.push({ name: 'CreateRateReview', params: {id: this.id, apptaid: this.apptaid}});
   }
 }
 }
