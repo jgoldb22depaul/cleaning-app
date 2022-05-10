@@ -86,10 +86,7 @@ export default {
 
     goToModal(cleaningService){
         this.selectedCleaningService = cleaningService;
-        this.title = this.selectedCleaningService.name
-        this.rate = this.selectedCleaningService.ratepersqft * this.sqft
-
-        this.showModal= true;
+        this.$router.push({ name: 'CompanyPage', params: {id : localStorage.currentUser, cid : this.selectedCleaningService.id}});
     },
 
     goToFinalPage(date, time){

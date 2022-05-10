@@ -29,6 +29,14 @@
                                         :show-rating="false"
                                         :active-color="[color, 'orange','gold', 'yellowgreen']"/>
         </div>
+        <div class="rating"> 
+            Punctuality  
+            <star-rating :rating="punRating"  
+                                        :star-size="20" 
+                                        :read-only="true" 
+                                        :show-rating="false"
+                                        :active-color="[color, 'orange','gold', 'yellowgreen']"/>
+        </div>
         
         
       </div>
@@ -56,9 +64,10 @@ export default {
   },
   props: {
     cleaningService: String,
-    pRating: String,
+    pRating: Number,
     cRating: Number,
     sRating: Number,
+    punRating: Number,
     title: String,
     rate: Number,
     sqft: Number,
@@ -74,17 +83,13 @@ export default {
     padding-top: 10px;
     padding-bottom: 10px
 }
-::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 .vue-modal {
-  
-    position: fixed; 
-    padding-top: 5px; 
-    overflow: auto; 
+    
+    position: absolute; 
+    overflow: auto !important;
+    z-index: 999;
 
 }
 .vue-modal-inner {
@@ -93,12 +98,12 @@ export default {
 }
 
 .vue-modal-content {
-  overflow-x: auto;
-  overflow-y: auto;
+  
+  
   position: relative;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  
   border-radius: 0.9em;
   padding: 1em;
 }

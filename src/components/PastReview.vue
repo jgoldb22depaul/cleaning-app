@@ -1,5 +1,5 @@
 <template>
-    <div class="size border-t border-gray-300 bg-white" v-if="!deleted">
+    <div class="size border border-gray-300 bg-white" v-if="!deleted">
         <div class="inner">
             <div class="flex">
                 <div class=" flex flex-1 flex-column">
@@ -60,9 +60,9 @@
                         </div>
                     </form>
                 </div>
-                <div v-show="past">
+                <div >
                     <div class=" flex justify-between " >
-                        <div class="flex justify-between">
+                        <div class="flex justify-between" v-show="past">
                             <Like :resid="resid"/>
                             <button class=" hover:bg-gray-200 text-gray-800 font-bold py-2 px-2 rounded flex-inline items-center" v-on:click="showModal = !showModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="gray" stroke-width="2">
@@ -90,7 +90,7 @@
                             
                         
                     </div>
-                    <PastReviewsModal :uid="firstName" :cid="cid" :isUser="isUser" v-show="showModal"/>
+                    
                 </div>
                 
             </div>
@@ -147,6 +147,7 @@ export default {
     } 
   },
   mounted() {
+      console.log('i am user', this.isUser, this.subject)
     this.oldSubject = this.subject
     this.oldReview = this.review
     this.newSubject = this.subject

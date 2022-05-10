@@ -1,23 +1,20 @@
 <template>
   <transition name="fade">
-  <div class="vue-modal">
-    <div class="vue-modal-inner">
+  
       <div class="vue-modal-content">
-        <button class="close" type="button" @click="$emit('close')">x</button>
-        <slot/>
+        
         <br/>
         
-        <div class="text-center font-bold text-2xl m-10"> Find Availabilities for {{title}}?  </div>
-        <span class = "tot flex justify-end ">${{ rate}}</span>
+        <div class="text-center font-bold text-1xl m-10"> Find Availabilities for {{title}}?  </div>
+        <span class = "tot flex justify-center ">starting cost: ${{rate}}</span>
         
         <form @submit.prevent="save">
-          <div class="flex justify-end mt-5">
+          <div class="flex justify-center mt-5">
               <input type="submit" value="Begin" class="border border-gray-200 rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-indigo-600">
           </div>
         </form>
       </div>
-    </div>
-  </div>
+   
   </transition>
 </template>
 
@@ -105,7 +102,8 @@ export default {
 .vue-modal-content {
   position: relative;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius:2px;
   background-clip: padding-box;
   border-radius: 0.3em;
   padding: 1em;
@@ -137,7 +135,7 @@ export default {
         text-align:end;
         font-style: normal;
         font-weight: bolder;
-        font-size: 30px;
+        font-size: 20px;
         transition: all linear 0.3s;
     }
 </style>

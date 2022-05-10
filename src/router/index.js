@@ -18,12 +18,24 @@ import Reschedule from '../views/Reschedule.vue'
 import Complete from '../views/Complete.vue'
 import CreateRateReview from '../views/CreateRateReview.vue'
 import CreateRate from '../views/CreateRate.vue'
+import CompanyPage from '../views/CompanyPage.vue'
 
 const routes = [
   { 
     path: '/',
     name: 'Login',
     component: Login
+  },
+  { 
+    path: '/Reschedule/:id',
+    name: 'Reschedule',
+    component: Reschedule
+  },
+  { 
+    path: '/CompanyPage/:id/:cid',
+    name: 'CompanyPage',
+    component: CompanyPage,
+    props: true
   },
   { 
     path: '/deleteaccount',

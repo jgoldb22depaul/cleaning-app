@@ -19,8 +19,8 @@
         <div class="flex justify-end mt-5">
           <input type="submit" value="Next Step" class="border border-gray-200 rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-indigo-600">
         </div>
-        <ReviewFeed/>
       </div>
+      
     </form>
     
   </div>
@@ -28,11 +28,10 @@
 
 <script>
 import Header from '../components/Header.vue'
-import ReviewFeed from '../components/ReviewFeed.vue'
 
 import axios from '@/axios'
 export default {
-  components: {ReviewFeed, Header},
+  components: {Header},
   data() {
     return {
         address: "",
@@ -79,7 +78,7 @@ export default {
             localStorage.setItem("sqft", this.sqft);
             localStorage.setItem("checkoutDate", this.checkoutDate);
             localStorage.setItem("checkoutTime", this.checkoutTime);
-            console.log(response);
+            
           }, (error) => {
             console.log(error);
           });
@@ -107,17 +106,6 @@ export default {
     }  
      
   },
-  mounted() {
-
-    axios
-        .get('http://localhost:4000/getReservations', {
-            currentUserUID: localStorage.getItem('currentUserName')
-        })
-        .then((resp) => {
-          console.log(resp);
-          this.userReservations = resp.data;
-        })
-  }
 }      
 
 </script>
