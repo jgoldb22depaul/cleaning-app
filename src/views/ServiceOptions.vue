@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       
-      total: localStorage.basePrice,
+      total: parseInt(localStorage.basePrice),
       results: [ ],
       checkedNames: [],
       postsNumber: null,
