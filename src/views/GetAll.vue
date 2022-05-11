@@ -181,7 +181,7 @@ export default {
 		apptprice: price
 		})
     .then((response) => {
-        this.DeleteAppt(this.apptaid);
+        this.DeleteRes(this.resid);
             
     }, (error) => {
         console.log(error);
