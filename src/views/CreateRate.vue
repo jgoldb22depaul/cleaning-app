@@ -125,6 +125,7 @@ components: {Header, StarRating},
 				this.cid = this.results.id;
         console.log("the cid is now ", this.cid)
         if (!this.cid){
+          console.log('undefined cool')
           this.$router.go()
         }
 				this.cleanname = this.results.name;
