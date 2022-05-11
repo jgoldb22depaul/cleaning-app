@@ -159,6 +159,7 @@ export default {
 			if(confirmDeletion){
 				this.CopyAppt(this.apptaid, this.apptrid, this.apptcid, this.appttime, this.apptdate, this.apptprice);
 				this.DeleteAppt(this.apptaid);
+				this.DeleteRes(resid);
 				this.$router.push({ name: 'CreateRate', params: {id: localStorage.currentUser, rid: resid, apptaid: this.apptaid}});
       } 
 	  }
@@ -183,7 +184,13 @@ export default {
 	.post('/api/deleteappt', {
 		aid: aid,
 		})
-  }
+  },
+  DeleteRes(resid){
+  axios	
+	.post('/api/deleteres', {
+		resid: resid
+		})
+	}
   }
   
 }
