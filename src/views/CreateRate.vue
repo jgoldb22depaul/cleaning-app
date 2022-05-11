@@ -122,6 +122,7 @@ components: {Header, StarRating},
 				this.results = resp.data;
 				console.log("results are: " + this.results)
 				this.cid = this.results.id;
+        console.log("the cid is now ", this.cid)
 				this.cleanname = this.results.name;
 				this.date = this.results.date;
 				})
