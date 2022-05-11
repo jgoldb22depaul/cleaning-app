@@ -111,8 +111,8 @@ components: {Header, StarRating},
  mounted() {
    console.log('appt id :', this.apptaid)
     if (this.id) localStorage.setItem("currentUser", this.id); 
-	if (this.rid) localStorage.setItem("rid", this.rid);  
-	if (this.apptaid) localStorage.setItem("aid", this.apptaid); 
+	  if (this.rid) localStorage.setItem("rid", this.rid);  
+	  if (this.apptaid) localStorage.setItem("aid", this.apptaid); 
 	axios
 		.get('/createrate', {
 			params: {
@@ -124,6 +124,9 @@ components: {Header, StarRating},
 				console.log("results are: " + this.results)
 				this.cid = this.results.id;
         console.log("the cid is now ", this.cid)
+        if (!this.cid){
+          this.$router.go()
+        }
 				this.cleanname = this.results.name;
 				this.date = this.results.date;
 				})
@@ -140,7 +143,6 @@ components: {Header, StarRating},
 			 pro: this.pro, 
 			 id: this.id,
 			 date: this.date
-		
 		})
 	this.$router.push({ name: 'CreateRateReview', params: {id: this.id, apptaid: this.apptaid}});
   }
