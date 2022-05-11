@@ -109,6 +109,7 @@ components: {Header, StarRating},
     }
   },
  mounted() {
+   console.log('appt id :', this.apptaid)
     if (this.id) localStorage.setItem("currentUser", this.id); 
 	if (this.rid) localStorage.setItem("rid", this.rid);  
 	if (this.apptaid) localStorage.setItem("aid", this.apptaid); 
