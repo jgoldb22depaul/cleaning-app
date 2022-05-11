@@ -14,6 +14,12 @@
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                   Estimated Cost
                 </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  Overall Rating
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                  Number of Bookings
+                </th>
               </tr>
               </thead>
               <tbody class="bg-white">
@@ -32,6 +38,24 @@
                     <div class="ml-4">
                       <div class="text-sm font-medium text-gray-500">
                         ${{cleaningService.ratepersqft * sqft == 0 ? cleaningService.ratepersqft : cleaningService.ratepersqft * sqft}}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-500">
+                        ${{getOverallRating(cleaningService.id)}}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-500">
+                        ${{getCountofBookings(cleaningService.id)}}
                       </div>
                     </div>
                   </div>
@@ -83,6 +107,34 @@ export default {
 
 
   methods: {
+
+    getOverallRating(cid){
+      axios.post('/getRatingsForCleaningComps', {
+              cid: cid
+            })
+          .then((resp) => {
+            console.log("inside then getoverallrating");
+            let ratingResponse = resp.data;
+            let number = parseFloat(ratingResponse[0].avg);
+            number.toFixed(2);
+            console.log(number.toString());
+            return number.toString();
+          })
+
+    },
+
+    getCountofBookings(cid){
+      axios
+          .post('/getCountofBookings', {
+              cid: cid
+          })
+          .then((resp) => {
+            console.log("inside then getoverallrating");
+            let data = resp.data;
+            console.log(data[0].count);
+            return data[0].count;
+          })
+    },
 
     goToModal(cleaningService){
         this.selectedCleaningService = cleaningService;
