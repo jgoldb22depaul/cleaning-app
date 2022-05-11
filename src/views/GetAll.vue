@@ -115,7 +115,8 @@ export default {
 	  apptcid: '', 
 	  appttime: '',
 	  apptdate: '',
-	  apptprice: 0
+	  apptprice: 0,
+    resid: 0
     } 
   },
  
@@ -152,14 +153,15 @@ export default {
 		  this.appttime = resp.data.time;
 		  this.apptdate = resp.data.date;
 		  this.apptprice = resp.data.price;
+      this.resid = resid;
 		  console.log(this.apptaid)
 		   if(this.apptaid > 0){
 			console.log(this.apptaid);
 			const confirmDeletion = confirm('Marking as complete will delete the appointment!')
 			if(confirmDeletion){
 				this.CopyAppt(this.apptaid, this.apptrid, this.apptcid, this.appttime, this.apptdate, this.apptprice);
-				this.DeleteAppt(this.apptaid);
-				this.DeleteRes(resid);
+				
+				
 				this.$router.push({ name: 'CreateRate', params: {id: localStorage.currentUser, rid: resid, apptaid: this.apptaid}});
       } 
 	  }
@@ -178,12 +180,24 @@ export default {
 		apptdate: date, 
 		apptprice: price
 		})
+    .then((response) => {
+        this.DeleteAppt(this.apptaid);
+            
+    }, (error) => {
+        console.log(error);
+    });
   },
   DeleteAppt(aid){
   axios
 	.post('/api/deleteappt', {
 		aid: aid,
 		})
+    .then((response) => {
+        this.DeleteRes(this.resid);
+            
+    }, (error) => {
+        console.log(error);
+    });
   },
   DeleteRes(resid){
   axios	

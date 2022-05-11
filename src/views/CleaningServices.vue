@@ -20,6 +20,32 @@
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                   Number of Bookings
                 </th>
+                <th scope="col" class="">
+                  <button id="dropdownDefault"  v-on:click="dropdown = !dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Sort By <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+<!-- Dropdown menu -->
+                  <div v-if="dropdown" id="dropdown"  class="z-10 absolute bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
+                      <ul class="py-1   dark:text-gray-900" aria-labelledby="dropdownDefault">
+                        <li>
+                          <button v-on:click="SortByBookings" class="block px-4 py-2 hover:bg-gray-100 w-full dark:hover:bg-gray-600 dark:hover:text-white">total bookings</button>
+                        </li>
+                        <li>
+                          <button v-on:click="SortByOverall" class="block px-4 py-2 hover:bg-gray-100 w-full dark:hover:bg-gray-600 dark:hover:text-white">overall rating</button>
+                        </li>
+                        <li>
+                          <button v-on:click="SortByAttribute('professionalism')" class="block px-4 py-2 hover:bg-gray-100 w-full dark:hover:bg-gray-600 dark:hover:text-white">professionalism</button>
+                        </li>
+                        <li>
+                          <button v-on:click="SortByAttribute('cleanliness')" class="block px-4 py-2 hover:bg-gray-100 w-full dark:hover:bg-gray-600 dark:hover:text-white">cleanliness</button>
+                        </li>
+                        <li>
+                          <button v-on:click="SortByAttribute('punctuality')" class="block px-4 py-2 hover:bg-gray-100 w-full dark:hover:bg-gray-600 dark:hover:text-white">punctuality</button>
+                        </li>
+                        <li>
+                          <button v-on:click="SortByAttribute('speed')" class="block px-4 py-2 hover:bg-gray-100 w-full dark:hover:bg-gray-600 dark:hover:text-white">speed</button>
+                        </li>
+                      </ul>
+                  </div>
+                </th>
               </tr>
               </thead>
               <tbody class="bg-white">
@@ -37,7 +63,7 @@
                   <div class="flex items-center">
                     <div class="ml-4">
                       <div class="text-sm font-medium text-gray-500">
-                        ${{cleaningService.ratepersqft * sqft == 0 ? cleaningService.ratepersqft : cleaningService.ratepersqft * sqft}}
+                        ${{cleaningService.ratepersqft * sqft == 0 ? cleaningService.ratepersqft : (cleaningService.ratepersqft * sqft).toFixed(2)}}
                       </div>
                     </div>
                   </div>
@@ -46,7 +72,7 @@
                   <div class="flex items-center">
                     <div class="ml-4">
                       <div class="text-sm font-medium text-gray-500">
-                        ${{getOverallRating(cleaningService.id)}}
+                        <OverallRating :cid="cleaningService.id"/>
                       </div>
                     </div>
                   </div>
@@ -55,7 +81,16 @@
                   <div class="flex items-center">
                     <div class="ml-4">
                       <div class="text-sm font-medium text-gray-500">
-                        ${{getCountofBookings(cleaningService.id)}}
+                        <Count :cid="cleaningService.name"/>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-500">
+                        
                       </div>
                     </div>
                   </div>
@@ -79,9 +114,10 @@ import axios from '@/axios'
 import Header from "@/components/Header";
 import DateTimeModal from "@/components/DateTimeModal";
 import router from "@/router";
-
+import OverallRating from "@/components/OverallRating";
+import Count from "@/components/Count";
 export default {
-  components: {DateTimeModal, Header},
+  components: {DateTimeModal, Header, OverallRating, Count},
   data() {
     return {
       selectedCleaningService: null,
@@ -90,14 +126,19 @@ export default {
       cleaningServices: [ ],
       showModal: false,
       title : '',
-      rate : 0
-      
+      rate : 0,
+      dropdown: false,
+      selector: localStorage.selector || 'ratePerSqft'
     }
   },
   mounted() {
     
     axios
-        .get('/getCleaningServices')
+        .get('/getCleaningServices', {
+              params: {
+			          selector: this.selector
+			        }
+          })
         .then((resp) => {
           console.log("inside then getcleaningServices");
           console.log(resp);
@@ -107,47 +148,54 @@ export default {
 
 
   methods: {
-
-    getOverallRating(cid){
-      axios.post('/getRatingsForCleaningComps', {
-              cid: cid
-            })
-          .then((resp) => {
-            console.log("inside then getoverallrating");
-            let ratingResponse = resp.data;
-            let number = parseFloat(ratingResponse[0].avg);
-            number.toFixed(2);
-            console.log(number.toString());
-            return number.toString();
+    SortByBookings: function () {
+        console.log('im inside sort')
+        let selector = '(SELECT COUNT(rid) from past_appts where cid = cleaningservices.name)'
+         axios
+        .get('/getCleaningServices', {
+              params: {
+			          selector: selector
+			        }
           })
-
+        .then((resp) => {
+          localStorage.setItem("selector", selector);
+          console.log("inside then getcleaningServices");
+          console.log(resp);
+          this.cleaningServices = resp.data;
+        })
     },
-
-    getCountofBookings(cid){
-      axios
-          .post('/getCountofBookings', {
-              cid: cid
+    SortByOverall: function () {
+        console.log('im inside sort')
+        let selector = '(Select coalesce(AVG(myAvg), .01) from (Select (Select AVG(myAverage) FROM (VALUES (cleanliness), (speed), (punctuality), (professionalism)) as TblAverage(myAverage)) from ratingsystem where cid = cleaningservices.id) as TblAverage(myAvg))'
+         axios
+        .get('/getCleaningServices', {
+              params: {
+			          selector: selector
+			        }
           })
-          .then((resp) => {
-            console.log("inside then getoverallrating");
-            let data = resp.data;
-            console.log(data[0].count);
-            return data[0].count;
+        .then((resp) => {
+          localStorage.setItem("selector", selector);
+          console.log("inside then getcleaningServices");
+          console.log(resp);
+          this.cleaningServices = resp.data;
+        })
+    },
+    SortByAttribute: function (attr) {
+        console.log('im inside sort', attr)
+        let selector = `(select coalesce(AVG(${attr}), .01) from ratingsystem where cid = cleaningservices.id)`
+        axios
+        .get('/getCleaningServices', {
+              params: {
+			          selector: selector
+			        }
           })
+        .then((resp) => {
+          localStorage.setItem("selector", selector);
+          console.log("inside then getcleaningServices");
+          console.log(resp);
+          this.cleaningServices = resp.data;
+        })
     },
-
-    goToModal(cleaningService){
-        this.selectedCleaningService = cleaningService;
-        this.$router.push({ name: 'CompanyPage', params: {id : localStorage.currentUser, cid : this.selectedCleaningService.id}});
-    },
-
-    goToFinalPage(date, time){
-      localStorage.setItem("cleaningDate", date);
-      localStorage.setItem("cleaningTime", time);
-      localStorage.setItem("cleaningService", this.selectedCleaningService)
-        router.push('Home'); //JOSH CONNECT HERE
-    }
-
   }
 }
 </script>
