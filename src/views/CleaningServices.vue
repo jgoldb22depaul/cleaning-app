@@ -196,6 +196,10 @@ export default {
           this.cleaningServices = resp.data;
         })
     },
+    goToModal(cleaningService){
+        this.selectedCleaningService = cleaningService;
+        this.$router.push({ name: 'CompanyPage', params: {id : localStorage.currentUser, cid : this.selectedCleaningService.id}});
+    },
   }
 }
 </script>
