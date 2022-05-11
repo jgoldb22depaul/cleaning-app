@@ -48,7 +48,7 @@ const routes = [
     component: Complete
   },
   { 
-    path: '/createrate/:id',
+    path: '/createrate/:id/:apptaid',
     name: 'CreateRate',
     component: CreateRate
   },
