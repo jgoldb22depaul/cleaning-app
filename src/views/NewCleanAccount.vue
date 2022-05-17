@@ -1,7 +1,8 @@
 <template>
   <div class="w-screen h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#E9967A'}">
-    <Header/>
-	<div class="text-center font-bold text-6xl px-6 py-7" v-bind:style="{color: '#F8FFE5'}">Create a new account </div>
+	<br>
+	<br>
+	<div class="text-center font-bold text-5xl px-6 py-7" v-bind:style="{color: '#F8FFE5'}">Create a new account for you cleaning company </div>
    <form @submit.prevent="CheckPassword">
       <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 p-4 shadow-lg max-w-2xl bg" v-bind:style="{ backgroundColor: '#CC5500'}">
         <input type="text" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="username" spellcheck="false" placeholder="Username">
@@ -94,5 +95,3 @@ export default {
 </script>
 
 <style></style>
-
-

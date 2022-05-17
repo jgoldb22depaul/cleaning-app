@@ -10,7 +10,7 @@
         
         <form @submit.prevent="save">
           <div class="flex justify-center mt-5">
-              <input type="submit" value="Begin" class="border border-gray-200 rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-indigo-600">
+              <input type="submit" value="Begin" class="rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2" v-bind:style="{ backgroundColor: '#FD3A4A'}">
           </div>
         </form>
       </div>
@@ -102,8 +102,9 @@ export default {
 .vue-modal-content {
   position: relative;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid;
   border-radius:2px;
+  color: #F8FFEF;
   background-clip: padding-box;
   border-radius: 0.3em;
   padding: 1em;

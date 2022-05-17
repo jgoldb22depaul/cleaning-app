@@ -1,9 +1,9 @@
 <template>
-  <div class="w-screen h-screen bg-blue-400">
+  <div class="w-screen h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#F8FFE5'}">
     <Header/>
-    <div class="text-center font-bold text-2xl m-10 text-white">What's the AirBnb reservation we need to work around?</div>
+    <div class="text-center font-bold text-3xl m-10" :style="{color: '#ECA72A'}">What's the AirBnb reservation we need to work around?</div>
     <form @submit.prevent="createNewPost">
-      <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl bg-white">
+      <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800  p-4 shadow-lg max-w-2xl " v-bind:style="{ backgroundColor: '#E9967A'}">
         <label for="address">Property Address</label>
         <input type="text" id="address" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="address" spellcheck="false" placeholder="123 cleanBnb St">
         <label for="zip">Zip Code</label>
@@ -17,7 +17,7 @@
         <label for="time">Check Out Time</label>
         <input type="time" id="time" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="checkoutTime" spellcheck="false" placeholder="2020/08/14">
         <div class="flex justify-end mt-5">
-          <input type="submit" value="Next Step" class="border border-gray-200 rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-indigo-600">
+          <input type="submit" value="Next Step" class=" rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-600" v-bind:style="{ backgroundColor: '#FD4A4A'}">
         </div>
       </div>
       

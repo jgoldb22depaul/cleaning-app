@@ -1,10 +1,10 @@
 <template>
-  <div class="w-screen h-screen bg-blue-400">
+<div class="w-screen h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#F8FFE5'}">
     <Header />
-    <div class="flex flex-col">
-      <div class="w-full overflow-x-auto sm:-mx-6 lg:mx-auto lg:mt-12">
+    <div class="flex flex-col" >
+      <div class="w-full overflow-x-auto sm:-mx-6 lg:mx-auto lg:mt-12" >
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+          <div class="shadow overflow-hidden  sm:rounded-lg">
             <table class="min-w-full zui-table zui-table-horizontal zui-table-highlight">
               <thead class="bg-yellow-400">
               <tr>
@@ -21,7 +21,7 @@
                   Number of Bookings
                 </th>
                 <th scope="col" class="">
-                  <button id="dropdownDefault"  v-on:click="dropdown = !dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Sort By <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                  <button id="dropdownDefault"  v-on:click="dropdown = !dropdown" class=" text-bold hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button" :style = "{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}" >Sort By <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
 <!-- Dropdown menu -->
                   <div v-if="dropdown" id="dropdown"  class="z-10 absolute bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
                       <ul class="py-1   dark:text-gray-900" aria-labelledby="dropdownDefault">
