@@ -33,6 +33,7 @@
 import Header from '../components/Header.vue'
 import ApptHeader from '../components/ApptHeader.vue'
 import axios from '@/axios'
+import sgMail from "@sendgrid/mail";
 
 export default {
   components: {Header, ApptHeader},
@@ -69,7 +70,8 @@ export default {
         }
     },
     save(){
-        axios
+      // this.sendConfirmationEmails();
+      axios
           .post('/finalize', {
             rid: localStorage.getItem('rid'),
             cid: this.cleaningService,
@@ -78,26 +80,30 @@ export default {
             price: localStorage.getItem('price')
           })
           .then((response) => {
+            this.sendConfirmationEmails();
             this.$router.push({ name: 'GetAll' });
           }, (error) => {
             console.log(error);
           });
 
-      // fetch('http://localhost:4000/api/create/post', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify( newPost )
-      // })
-      //   .then(res => res.json())
-      //   .then(data => {
-      //     console.log('Success: New post added')
-      //   })
-      //   .catch((error) => {
-      //     console.error('Error:', error);
-      //   });
-        
-      
-      
+    },
+
+    sendConfirmationEmails(){
+      console.warn("INSIDE SEND EMAIL")
+      axios.post('/sendEmail/', {
+
+        Times: this.Times,
+        Dates: this.date,
+        Address: localStorage.getItem('address'),
+        CleanerEmail: localStorage.getItem("cleaningServiceEmail"),
+        CleanerName: localStorage.getItem('cleaningServiceName'),
+        UserEmail: localStorage.getItem("currentUserEmail")
+      })
+      .then((response) => {
+        console.log(response.status);
+      }, (error) => {
+        console.warn(error);
+      });
     }
   }
 }
