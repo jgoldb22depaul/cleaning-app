@@ -6,7 +6,7 @@
         <br/>
         
         <div class="text-center font-bold text-1xl m-10"> Find Availabilities for {{title}}?  </div>
-        <span class = "tot flex justify-center ">starting cost: ${{rate}}</span>
+        <span class = "tot flex justify-center ">starting cost: ${{rate.toFixed(2)}}</span>
         
         <form @submit.prevent="save">
           <div class="flex justify-center mt-5">
