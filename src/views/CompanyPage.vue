@@ -1,15 +1,16 @@
 <template>
-  <div class="w-screen h-full min-h-screen bg-blue-400">
+    <div class="w-screen h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#F8FFE5'}">
+
     <Header/>
     
-      <div class="text-center font-bold text-2xl m-10 text-white">Ratings for {{companyName}}</div>
+      <div class="text-center font-bold text-2xl m-10" :style="{ color: '#ECA72C'}">Ratings for {{companyName}}</div>
      <div class="">    
-        <div class="mt-10 flex justify-between mx-auto w-2/3 rounded-2xl  text-gray-800 border border-gray-300 p-4 shadow-lg  bg-white">
+        <div class="mt-10 flex justify-between mx-auto w-2/3 rounded-2xl  text-gray-800 border border-gray-300 p-4 shadow-lg" :style="{ backgroundColor: '#E9967A'}">
           <div class="w-2/3  mx-auto ">
             <ReviewFeed :cid="parseInt(cid)"/>
           </div>
-          <aside class="w-1/5 border mx-auto ">
-            <DateTimeModal :cleaningService="results" :title="companyName" :rate="price">
+          <aside class="w-1/5">
+            <DateTimeModal :cleaningService="results" :title="companyName" :rate="price" v-bind:style="{ backgroundColor: '#E9967A'}">
             </DateTimeModal>
           </aside>
         </div>

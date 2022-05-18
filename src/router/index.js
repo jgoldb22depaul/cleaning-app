@@ -7,6 +7,7 @@ import GetOnePost from '../views/GetOnePost.vue'
 import NotFound from '../views/NotFound.vue'
 import Delete from '../views/Delete.vue'
 import NewAccount from '../views/NewAccount.vue'
+import NewCleanAccount from '../views/NewCleanAccount.vue'
 import CleaningServices from  '../views/CleaningServices'
 import ServiceOptions from '../views/ServiceOptions.vue'
 import CheckAvailable from '../views/CheckAvailable.vue'
@@ -66,6 +67,11 @@ const routes = [
     path: '/newaccount',
     name: 'NewAccount',
     component: NewAccount
+  },
+  {
+    path: '/newcleanaccount',
+    name: 'NewCleanAccount',
+    component: NewCleanAccount
   },
   { 
     path: '/options/:id',

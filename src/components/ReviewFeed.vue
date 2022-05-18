@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-bind:style="{ backgroundColor: '#F8FFE5'}">
         <Distribution :cid="cid"/>
         <div v-if="userReview" class="pad mx-8"> 
             <Review 
@@ -16,7 +16,7 @@
             :resid="userReview.resid"
             :isUser="true"/>
         </div>
-        <div class="pad mx-8" v-for="result in results" :key="result.resid">
+        <div class="pad mx-8" v-for="result in results" :key="result.resid"  >
             
             <Review 
             :firstName="result.userid" 

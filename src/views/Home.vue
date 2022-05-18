@@ -1,8 +1,8 @@
 <template>
-  <div class="w-screen h-screen bg-purple-700">
+  <div class="w-screen h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#ECA72C'}">
     <Header/>
-    <p class="relative top-52 text-white text-4xl lg:text-6xl font-bold">welcome, {{this.username}}</p>
-    <p class="relative top-56 text-white lg:text-3xl">AirBnb Scheduler Service</p>
+    <p class="relative top-52 text-4xl lg:text-8xl font-bold" :style="{color: '#F8FFE5'}">welcome, {{this.username}}</p>
+    <p class="relative top-56 text-white lg:text-4xl">AirBnb Scheduler Service</p>
     
   </div>
 </template>
