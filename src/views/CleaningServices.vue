@@ -197,8 +197,6 @@ export default {
         })
     },
     goToModal(cleaningService){
-        localStorage.setItem("cleaningServiceEmail", cleaningService.email);
-        localStorage.setItem("cleaningServiceName", cleaningService.name);
         this.selectedCleaningService = cleaningService;
         this.$router.push({ name: 'CompanyPage', params: {id : localStorage.currentUser, cid : this.selectedCleaningService.id}});
     },

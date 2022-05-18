@@ -131,7 +131,6 @@ export default {
         if(resp.data[0]){
           localStorage.setItem('currentUserName', resp.data[0].firstname)
           localStorage.setItem('currentUser', resp.data[0].username)
-          localStorage.setItem('currentUserEmail', resp.data[0].email)
           this.$router.push({ name: 'Create', params : {id : resp.data[0].username }});
         }
          // go to next page -> successful login

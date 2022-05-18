@@ -6,13 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
-  "browser": {
-    "fs": false,
-    "path": false,
-    "os": false
-  },
   "dependencies": {
-    "@sendgrid/mail": "^7.6.2",
     "axios": "^0.27.1",
     "body-parser": "^1.20.0",
     "connect-history-api-fallback": "^1.6.0",
