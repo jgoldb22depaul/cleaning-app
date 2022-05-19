@@ -9,6 +9,8 @@
         <input type="password" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="password" spellcheck="false" placeholder="Password">
 		 <input type="firstname" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="firstname" spellcheck="false" placeholder="First Name">
 		  <input type="lastname" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="lastname" spellcheck="false" placeholder="Last Name">
+		  <input type="compname" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="compname" spellcheck="false" placeholder="Company Name">
+		  <input type="email" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="email" spellcheck="false" placeholder="Email">
         <div class="flex justify-end mt-5">
           <input type="submit" value="Submit" class="border border-gray-200 rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-600"  v-bind:style="{ backgroundColor: '#FD3A4A'}">
         </div>
@@ -33,6 +35,8 @@ export default {
       password: '',
 	  firstname: '',
 	  lastname: '',
+	  compname: '',
+	  email: '',
       users: [ ],
       postsNumber: null
     } 
@@ -66,11 +70,13 @@ export default {
 	 
   },
     RequestCreateAccount() {
-      axios.post('/newaccount', {
+      axios.post('/newcleanaccount', {
         username: this.username,
         password: this.password,
-		    firstname: this.firstname,
-		    lastname: this.lastname
+		firstname: this.firstname,
+		lastname: this.lastname,
+		compname: this.compname,
+		email: this.email
       })
       .then((resp) => {
         console.log(resp);
@@ -86,8 +92,10 @@ export default {
       //convert data properties back into empty strings
       this.username = ''
       this.password = ''
-	    this.firstname = ''
-	    this.lastname = ''
+	  this.firstname = ''
+	  this.lastname = ''
+	  this.compname = ''
+	  this.email = ''
     }  
      
   }
