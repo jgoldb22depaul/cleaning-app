@@ -129,6 +129,7 @@ export default {
       .then((resp) => {
         console.log(resp);
         if(resp.data[0]){
+		  localStorage.setItem('currentUserEmail', resp.data[0].email)
           localStorage.setItem('currentUserName', resp.data[0].firstname)
           localStorage.setItem('currentUser', resp.data[0].username)
           this.$router.push({ name: 'Create', params : {id : resp.data[0].username }});
