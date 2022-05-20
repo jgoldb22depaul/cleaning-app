@@ -49,8 +49,8 @@ export default {
     if (localStorage.currentUser) {
       this.username = localStorage.currentUser;
     }
-  }
   
+}
 }
 
 </script>

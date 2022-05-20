@@ -10,6 +10,7 @@
 		 <input type="firstname" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="firstname" spellcheck="false" placeholder="First Name">
 		  <input type="lastname" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="lastname" spellcheck="false" placeholder="Last Name">
 		  <input type="compname" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="compname" spellcheck="false" placeholder="Company Name">
+		  <input type="ratepersqft" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="ratepersqft" spellcheck="false" placeholder="$ Rate per Square Foot">
 		  <input type="email" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="email" spellcheck="false" placeholder="Email">
         <div class="flex justify-end mt-5">
           <input type="submit" value="Submit" class="border border-gray-200 rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-600"  v-bind:style="{ backgroundColor: '#FD3A4A'}">
@@ -36,6 +37,7 @@ export default {
 	  firstname: '',
 	  lastname: '',
 	  compname: '',
+	  ratepersqft: 0,
 	  email: '',
       users: [ ],
       postsNumber: null
@@ -76,7 +78,8 @@ export default {
 		firstname: this.firstname,
 		lastname: this.lastname,
 		compname: this.compname,
-		email: this.email
+		email: this.email,
+		ratepersqft: this.ratepersqft
       })
       .then((resp) => {
         console.log(resp);
@@ -96,6 +99,7 @@ export default {
 	  this.lastname = ''
 	  this.compname = ''
 	  this.email = ''
+	  this.ratepersqft = 0
     }  
      
   }

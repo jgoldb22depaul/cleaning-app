@@ -1,20 +1,20 @@
 <template>
-  <div class="w-screen h-screen bg-blue-400">
+  <div class="w-screen h-screen bg-400" :style="{ backgroundColor: '#F8FFE5'}">
     <CleanHeader/>
-    <div class="text-center font-bold text-5xl m-10 text-white">Account Settings</div>
-	<p class="relative top-5 text-white text-1xl lg:text-3xl font-bold"> Change Account Password: </p>
+    <div class="text-center font-bold text-5xl m-10 " :style="{color: '#ECA72C'}">Account Settings</div>
+	<p class="relative top-5 text-1xl lg:text-3xl font-bold" :style="{color: '#ECA72C'}"> Change Account Password: </p>
 	<form @submit.prevent="CheckPassword">
-      <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl bg-white">
-        <label for="oldpassword">Old Password</label>
-		<input type="text" id="new" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="oldpassword" spellcheck="false" placeholder="current password">
-		<label for="newpassword">New Password</label>
-		<input type="text" id="new" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="newpassword" spellcheck="false" placeholder="new password">
-		<input type="submit" value="Submit" class="border border-gray-200 rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-indigo-600">
+      <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 p-4 shadow-lg max-w-2xl" :style="{ backgroundColor: '#E9967A'}">
+        <label for="oldpassword" :style="{color: '#F8FFE5'}">Old Password</label>
+		<input type="text" id="new" required class="bg-gray-100 p-2 mb-4 outline-none" v-model="oldpassword" spellcheck="false" placeholder="current password">
+		<label for="newpassword" :style="{color: '#F8FFE5'}">New Password</label>
+		<input type="text" id="new" required class="bg-gray-100  p-2 mb-4 outline-none" v-model="newpassword" spellcheck="false" placeholder="new password">
+		<input type="submit" value="Submit" class="rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2" :style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
       </div>
     </form>
 	 <div id="deleteUser">
 	 <br>
-		<button v-on:click="requestDeleteUser()" class = "border border-gray-200 rounded-xl py-4 px-8 font-bold cursor-pointer text-sm text-white ml-2 bg-indigo-600">Delete Account</button>
+		<button v-on:click="requestDeleteUser()" class = "rounded-xl py-4 px-8 font-bold cursor-pointer text-sm text-white ml-2" :style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">Delete Account</button>
  </div>
     </div>
 	
@@ -30,7 +30,8 @@ export default {
     return {
       username: '',
 	   oldpassword: '',
-	  newpassword: ''
+	  newpassword: '',
+	  compname: ''
 	   } 
   },
   methods: {
@@ -60,14 +61,38 @@ export default {
 	
 	},
 	requestDeleteUser(){
-	this.$router.push({ name: 'DeleteAccount' });
+	const confirmDeletion = confirm('Are you sure you want to delete your account?')
+	if(confirmDeletion){
+	axios	
+			.post('/deletecleanaccount', {
+				username: localStorage.currentUser,
+				compname: this.compname
+				})
+				.then((resp) => {
+				console.log(resp);
+				if(resp.data){
+					this.$router.push({ name: 'Login' });
+        }
+          }, (error) => {
+            console.log(error);
+          });
 	}
-  
-  },
+	}
+	},
   mounted() {
     if (localStorage.currentUser) {
       this.username = localStorage.currentUser;
     }
+	axios
+		.get('/deletecleanaccount', {
+			username: localStorage.currentUser
+		})
+		.then((resp) => {
+			console.log(resp);
+			this.compname = resp.data[0].compname;
+          }, (error) => {
+            console.log(error);
+          });
   }
   
 }
