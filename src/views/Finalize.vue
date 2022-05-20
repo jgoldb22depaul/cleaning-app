@@ -1,26 +1,26 @@
 <template>
-  <div class="w-screen h-screen bg-purple-400">
+  <div class="w-screen h-screen bg-400" :style="{ backgroundColor: '#F8FFE5'}">
     <Header/>
-    <div class="text-center font-bold text-2xl m-10 text-white">Build your appointment with, {{cleaningService}}</div>
-    <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl bg-white">
-        <ApptHeader col2 = "blue"/>
-        <div class="text-center font-bold text-2xl m-10"> Your name.  </div>
-            <span> {{username}}</span>
-        <div class="text-center font-bold text-2xl m-10"> Your cleaning options.  </div>
-        <li v-for="item in Options" :key="item.id">
+    <div class="text-center font-bold text-2xl m-10" :style="{ color: '#ECA72A'}">Build your appointment with, {{cleaningService}}</div>
+    <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 p-4 shadow-lg max-w-2xl" :style="{ backgroundColor: '#E9967A'}">
+        <ApptHeader col2 = "pink" :style="{ color: '#F8FFE5'}"/>
+        <div class="text-center font-bold text-2xl m-10" :style="{ color: '#F8FFE5'}"> Your name.  </div>
+            <span :style="{ color: '#F8FFE5'}"> {{username}}</span>
+        <div class="text-center font-bold text-2xl m-10" :style="{ color: '#F8FFE5'}"> Your cleaning options.  </div>
+        <li v-for="item in Options" :key="item.id" :style="{ color: '#F8FFE5'}">
             {{ item.id }}
         </li>
-        <div class="text-center font-bold text-2xl m-10"> The Date that works for you.  </div>
-        <li>
+        <div class="text-center font-bold text-2xl m-10" :style="{ color: '#F8FFE5'}"> The Date that works for you.  </div>
+        <li :style="{ color: '#F8FFE5'}">
             {{ Dates }}
         </li>
-        <div class="text-center font-bold text-2xl m-10"> The Time that works for you.  </div>
-        <li>
+        <div class="text-center font-bold text-2xl m-10" :style="{ color: '#F8FFE5'}"> The Time that works for you.  </div>
+        <li :style="{ color: '#F8FFE5'}">
             {{ Times }}
         </li>
         <form @submit.prevent="save">
           <div class="flex justify-end mt-5">
-              <input type="submit" value="Finalize Appointment" class="border border-gray-200 rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-indigo-600">
+              <input type="submit" value="Finalize Appointment" class="rounded-xl py-2 px-4 font-thin cursor-pointer text-sm ml-2 bg-indigo-600" :style="{backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
           </div>
         </form>
         

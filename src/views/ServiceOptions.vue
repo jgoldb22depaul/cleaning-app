@@ -3,9 +3,9 @@
     <Header/>
     <div class="text-center font-bold text-2xl m-10" :style="{ color: '#ECA72C'}">Build your appointment with, {{cleaningService}}</div>
     <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 p-4 shadow-lg max-w-2xl" v-bind:style="{ backgroundColor: '#E9967A'}">
-        <ApptHeader col = "blue"/>
+        <ApptHeader col = "pink" :style = "{color: '#F8FFE5'}"/>
         <div class="text-center font-bold text-2xl m-10" v-bind:style="{ color: '#F8FFE5'}"> Extra services offered by, {{cleaningService}}  </div>
-        <span class = "tot">${{ total }}</span>
+        <span class = "tot" :style="{ color: '#F8FFE5'}">${{ total }}</span>
         <label v-for="element in results" :key="element.id" class="label-checkbox" :class="{ 'checked': element.checked }" v-bind:style="{ color: '#F8FFE5'}" :for="element.id.toLowerCase()">
             <input type="checkbox" 
                 v-model="checkedNames" 
@@ -18,7 +18,7 @@
         </label>
         <form @submit.prevent="save">
           <div class="flex justify-end mt-5">
-              <input type="submit" value="Save" class=" rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-indigo-600" v-bind:style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
+              <input type="submit" value="Save" class=" rounded-xl py-2 px-4 font-thin cursor-pointer text-sm ml-2 bg-indigo-600" v-bind:style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
           </div>
         </form>
         
@@ -91,6 +91,7 @@ export default {
         font-weight: bolder;
         font-size: 19px;
         line-height: 16px;
+		
         
         
     }
@@ -100,6 +101,7 @@ export default {
         font-weight: bolder;
         font-size: 30px;
         transition: all linear 0.3s;
+		
     }
     
 </style>

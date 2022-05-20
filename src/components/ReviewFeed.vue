@@ -1,7 +1,7 @@
 <template>
-    <div v-bind:style="{ backgroundColor: '#F8FFE5'}">
+    <div v-bind:style="{ backgroundColor: '#E9967A'}">
         <Distribution :cid="cid"/>
-        <div v-if="userReview" class="pad mx-8"> 
+        <div v-if="userReview" class="pad mx-8" > 
             <Review 
             :firstName="userReview.userid" 
             :cleanRating ="parseInt(userReview.cleanliness)" 
@@ -14,9 +14,10 @@
             :past="true"
             :cid="cid"
             :resid="userReview.resid"
-            :isUser="true"/>
+            :isUser="true"
+			:style="{ backgroundColor: '#F8FFE5'}"/>
         </div>
-        <div class="pad mx-8" v-for="result in results" :key="result.resid"  >
+        <div class="pad mx-8"  v-for="result in results" :key="result.resid"  >
             
             <Review 
             :firstName="result.userid" 

@@ -1,9 +1,9 @@
 <template>
-    <div class="size border-t border-gray-300 bg-white" v-if="!deleted">
+    <div class="size" :style="{ backgroundColor: '#F8FFE5'}" v-if="!deleted">
         <div class="inner">
             <div class="flex">
-                <div class=" flex flex-1 flex-column">
-                    <div class=" flex flex-1 flex-column">
+                <div class=" flex flex-1 flex-column" >
+                    <div class=" flex flex-1 flex-column" >
                             <h2 class= "name">
                                 {{firstName}}
                             </h2>
@@ -229,11 +229,12 @@ export default {
         font-weight: bolder;
         text-align: justify;
         padding-top: 10px;
-        color: palevioletred
+        color: #FD3A4A
     }
    .reviewbox{
        text-align: justify;
         padding-top: 20px
+	
     }
     .modal {
  overflow-y: auto;
