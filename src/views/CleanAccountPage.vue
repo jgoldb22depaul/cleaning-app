@@ -43,7 +43,7 @@ export default {
   },
 	changePassword(){
 		 axios
-          .post('/accountpage', {
+          .post('/cleanaccountpage', {
 			newpassword: this.newpassword,
 			username: this.username,
 			oldpassword: this.oldpassword
@@ -84,11 +84,13 @@ export default {
       this.username = localStorage.currentUser;
     }
 	axios
-		.get('/deletecleanaccount', {
-			username: localStorage.currentUser
+		.get('/cleanaccountpage', {
+			params: {
+				username: localStorage.currentUser
+				}
 		})
 		.then((resp) => {
-			console.log(resp);
+			console.log('result for comp is ' + resp.data[0].compname);
 			this.compname = resp.data[0].compname;
           }, (error) => {
             console.log(error);
