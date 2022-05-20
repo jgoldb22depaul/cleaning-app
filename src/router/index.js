@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import Home from '../views/Home.vue'
+import CleanHome from '../views/CleanHome.vue'
 import Create from '../views/Create.vue'
 import GetAll from '../views/GetAll.vue'
 import GetOnePost from '../views/GetOnePost.vue'
@@ -13,6 +14,7 @@ import ServiceOptions from '../views/ServiceOptions.vue'
 import CheckAvailable from '../views/CheckAvailable.vue'
 import Finalize from '../views/Finalize.vue'
 import AccountPage from '../views/AccountPage.vue'
+import CleanAccountPage from '../views/CleanAccountPage.vue'
 import Appointment from '../views/Appointment.vue'
 import DeleteAccount from '../views/DeleteAccount.vue'
 import Reschedule from '../views/Reschedule.vue'
@@ -98,10 +100,20 @@ const routes = [
     name: 'AccountPage',
     component: AccountPage
   },
+   {
+    path: '/cleanaccountpage/:id',
+    name: 'CleanAccountPage',
+    component: CleanAccountPage
+  },
   {
     path: '/Home/:id',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/CleanHome/:id',
+    name: 'CleanHome',
+    component: CleanHome
   },
   {
     path: '/create/post/:id',

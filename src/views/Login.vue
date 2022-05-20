@@ -132,8 +132,14 @@ export default {
 		  localStorage.setItem('currentUserEmail', resp.data[0].email)
           localStorage.setItem('currentUserName', resp.data[0].firstname)
           localStorage.setItem('currentUser', resp.data[0].username)
+		  console.log('acctype is: ' + resp.data[0].acctype)
+		  if(resp.data[0].acctype == 'company'){
+			this.$router.push({ name: 'CleanHome', params : {id : resp.data[0].username }});
+		  }
+		   if(resp.data[0].acctype == 'client'){
           this.$router.push({ name: 'Create', params : {id : resp.data[0].username }});
         }
+		}
          // go to next page -> successful login
       })
       .catch(function (error) {
