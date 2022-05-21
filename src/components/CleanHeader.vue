@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full lg:w-7/12 h-10 mx-auto items-center flex justify-around" >
+  <div class="w-full lg:screen h-10 mx-auto items-center flex justify-around" :style="{backgroundColor: '#F8FFE5'}" >
     <router-link :to="{name: 'CleanHome', params: {id : username}}"><p class="" v-bind:style="{color: '#CC5500'}">Home</p></router-link>
 	<router-link :to="{name: 'Login', params: {id : username}}"><p class="" v-bind:style="{color: '#CC5500'}">Logout</p></router-link>
 	<router-link :to="{name: 'CleanAccountPage', params: {id : username}}"><p class="" v-bind:style="{color: '#CC5500'}">Account Settings</p></router-link>
