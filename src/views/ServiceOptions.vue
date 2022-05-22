@@ -6,7 +6,7 @@
         <ApptHeader col = "pink" :style = "{color: '#F8FFE5'}"/>
         <div class="text-center font-bold text-2xl m-10" v-bind:style="{ color: '#F8FFE5'}"> Extra services offered by, {{cleaningService}}  </div>
         <span class = "tot" :style="{ color: '#F8FFE5'}">${{ total }}</span>
-        <label v-for="element in results" :key="element.id" class="label-checkbox" :class="{ 'checked': element.checked }" v-bind:style="{ color: '#F8FFE5'}" :for="element.id.toLowerCase()">
+        <label v-for="element in results" :key="element.id" class="label-checkbox" :class="{ 'checked': element.checked }" v-bind:style="{ color: '#F8FFE5',borderColor: '#F8FFE5'}" :for="element.id.toLowerCase()">
             <input type="checkbox" 
                 v-model="checkedNames" 
                 class="check-day" 

@@ -60,7 +60,7 @@
                         <div class="flex items-center">
                           <div class="ml-4">
                             <div class="text-sm font-medium">
-                              {{ result.checkoutdate }}         
+                              {{ result.to_char }}         
                             </div>
                           </div>
                         </div>

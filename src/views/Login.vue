@@ -139,7 +139,7 @@ export default {
 			this.$router.push({ name: 'CleanHome', params : {id : resp.data[0].username }});
 		  }
 		   if(resp.data[0].acctype == 'client'){
-          this.$router.push({ name: 'Create', params : {id : resp.data[0].username }});
+          this.$router.push({ name: 'Home', params : {id : resp.data[0].username }});
         }
 		}
          // go to next page -> successful login

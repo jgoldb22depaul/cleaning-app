@@ -1,9 +1,9 @@
 <template>
-  <div class="w-screen h-screen bg-blue-400">
+<div class="w-screen h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#F8FFE5'}">
     <Header/>
-    <div class="text-center font-bold text-2xl m-10 text-white">Viewing your appointment with, {{cleaningService}}</div>
-    <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl bg-white">
-        <router-link :to="{name: 'CleaningServices'}" :style= "{ 'color' : 'blue'}"><p class="t">Dont see a cleaning appointment? click here to make one.</p></router-link>
+    <div class="text-center font-bold text-3xl m-10" :style="{color: '#ECA72A'}">Viewing your appointment with, {{cleaningService}}</div>
+    <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col p-4 shadow-lg max-w-2xl" :style="{color: '#F8FFE5', backgroundColor: '#E9967A'}">
+        <router-link :to="{name: 'CleaningServices'}" :style= "{ 'color' : '#F8FFE5'}"><p class="t">Dont see a cleaning appointment? click here to make one.</p></router-link>
         <div class="text-center font-bold text-2xl m-10"> Cleaning company.  </div>
             <li> {{cleaningService}}</li>
         <div class="text-center font-bold text-2xl m-10"> Appointment date.  </div>
@@ -19,9 +19,9 @@
             {{ total }}
         </li>
         <div class="flex justify-end mt-5">
-            <input @click="cancel" type="button" value="Cancel" class="border border-gray-200 rounded-2xl py-2 px-4 font-thin cursor-pointer text-gray-700 ml-2 bg-gray-200 hover:bg-gray-300">
-            <input @click="reschedule" type="button" value="Reschedule" class="border border-purple-700 rounded-2xl py-2 px-4 font-thin cursor-pointer text-white ml-2 bg-blue-700 hover:bg-blue-600">
-            <input @click="deleteApp" type="button" value="Delete" class="border border-purple-700 rounded-2xl py-2 px-4 font-thin cursor-pointer text-white ml-2 bg-purple-700 hover:bg-purple-600">
+            <input @click="cancel" type="button" value="Cancel" class="rounded-2xl py-2 px-4 font-thin cursor-pointer ml-2 hover:bg-gray-300" :style="{color: '#F8FFE5', backgroundColor: '#FD3A4A'}">
+            <input @click="reschedule" type="button" value="Reschedule" class="rounded-2xl py-2 px-4 font-thin cursor-pointer ml-2 hover:bg-blue-600" :style="{color: '#F8FFE5', backgroundColor: '#FD3A4A'}">
+            <input @click="deleteApp" type="button" value="Delete" class="rounded-2xl py-2 px-4 font-thin cursor-pointer ml-2 hover:bg-purple-600" :style="{color: '#F8FFE5', backgroundColor: '#FD3A4A'}">
         </div>
         
     </div>
