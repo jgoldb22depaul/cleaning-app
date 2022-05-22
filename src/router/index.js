@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import CleanHome from '../views/CleanHome.vue'
 import Create from '../views/Create.vue'
 import GetAll from '../views/GetAll.vue'
+import CleanSchedule from '../views/CleanSchedule.vue'
 import GetOnePost from '../views/GetOnePost.vue'
 import NotFound from '../views/NotFound.vue'
 import Delete from '../views/Delete.vue'
@@ -131,6 +132,11 @@ const routes = [
     path: '/post/:id',
     name: 'GetAll',
     component: GetAll
+  },
+  {
+    path: '/cleanschedule/:id',
+    name: 'CleanSchedule',
+    component: CleanSchedule
   },
   {
     path: '/post/:id',

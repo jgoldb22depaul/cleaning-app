@@ -2,26 +2,26 @@
 <div class="w-screen h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#F8FFE5'}">
     <Header />
     <div class="flex flex-col" >
-      <div class="w-full overflow-x-auto sm:-mx-6 lg:mx-auto lg:mt-12" >
-        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <div class="shadow overflow-hidden  sm:rounded-lg">
-            <table class="min-w-full zui-table zui-table-horizontal zui-table-highlight">
-              <thead class="bg-yellow-400">
+      <div class="w-full overflow-x-auto sm:-mx-6 lg:mx-auto lg:mt-12"  >
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8" >
+          <div class="shadow overflow-hidden  sm:rounded-lg" >
+            <table class="min-w-full zui-table zui-table-horizontal zui-table-highlight" :style="{ color: '#F8FFE5'}">
+              <thead :style="{ backgroundColor: '#ECA72A'}">
               <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider" :style="{ color: '#F8FFE5', backgroundColor: '#E9967A'}">
                   Cleaning Service
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider" :style="{ color: '#F8FFE5', backgroundColor: '#E9967A'}">
                   Estimated Cost
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider" :style="{ color: '#F8FFE5', backgroundColor: '#E9967A'}">
                   Overall Rating
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th scope="col" class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider" :style="{ color: '#F8FFE5', backgroundColor: '#E9967A'}">
                   Number of Bookings
                 </th>
-                <th scope="col" class="">
-                  <button id="dropdownDefault"  v-on:click="dropdown = !dropdown" class=" text-bold hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button" :style = "{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}" >Sort By <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                <th scope="col" class="" :style="{ backgroundColor: '#E9967A'}">
+                  <button id="dropdownDefault"  v-on:click="dropdown = !dropdown" class=" text-bold hover:bg-yellow-800 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button" :style = "{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}" >Sort By <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
 <!-- Dropdown menu -->
                   <div v-if="dropdown" id="dropdown"  class="z-10 absolute bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
                       <ul class="py-1   dark:text-gray-900" aria-labelledby="dropdownDefault">
@@ -48,21 +48,21 @@
                 </th>
               </tr>
               </thead>
-              <tbody class="bg-white">
+              <tbody :style="{backgroundColor: '#E9967A'}">
               <tr v-for="cleaningService in cleaningServices" :key="cleaningService.id" @click="goToModal(cleaningService)">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="ml-4">
-                      <div class="text-sm font-medium text-gray-500 uppercase">
+                      <div class="text-lg font-medium uppercase" :style="{ color: '#F8FFE5'}">
                         {{ cleaningService.name}}
                       </div>
                     </div>
                   </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <td class="px-6 py-4 whitespace-nowrap" >
                   <div class="flex items-center">
                     <div class="ml-4">
-                      <div class="text-sm font-medium text-gray-500">
+                      <div class="text-lg font-medium" :style="{ color: '#F8FFE5'}">
                         ${{cleaningService.ratepersqft * sqft == 0 ? cleaningService.ratepersqft : (cleaningService.ratepersqft * sqft).toFixed(2)}}
                       </div>
                     </div>
@@ -71,7 +71,7 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="ml-4">
-                      <div class="text-sm font-medium text-gray-500">
+                      <div class="text-sm font-medium" :style="{ color: '#F8FFE5'}">
                         <OverallRating :cid="cleaningService.id"/>
                       </div>
                     </div>
@@ -80,7 +80,7 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="ml-4">
-                      <div class="text-sm font-medium text-gray-500">
+                      <div class="text-lg font-medium" :style="{ color: '#F8FFE5'}">
                         <Count :cid="cleaningService.name"/>
                       </div>
                     </div>
@@ -89,7 +89,7 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="ml-4">
-                      <div class="text-sm font-medium text-gray-500">
+                      <div class="text-lg font-medium text-gray-500">
                         
                       </div>
                     </div>
@@ -208,27 +208,24 @@ export default {
 
 <style>
 .zui-table {
-  border: solid 1px #DDEEEE;
+  border: solid 4px #CC5500;
   border-collapse: collapse;
   border-spacing: 0;
-  font: normal 13px Arial, sans-serif;
+  font: normal 16px Arial, sans-serif;
 }
 .zui-table thead th {
-  background-color: #DDEFEF;
-  border: solid 1px #DDEEEE;
+  border: solid 4px #CC5500;
   color: #336B6B;
   padding: 10px;
   text-align: left;
-  text-shadow: 1px 1px 1px #fff;
+  
 }
 .zui-table tbody td {
-  border: solid 1px #DDEEEE;
-  color: #333;
+  border: solid 4px #CC5500;
   padding: 10px;
-  text-shadow: 1px 1px 1px #fff;
 }
 .zui-table-highlight tbody tr:hover {
-  background-color: #CCE7E7;
+  background-color: pink;
 }
 .zui-table-horizontal tbody td {
   border-left: none;

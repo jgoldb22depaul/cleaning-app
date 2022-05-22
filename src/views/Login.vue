@@ -129,11 +129,12 @@ export default {
           localStorage.setItem('currentUser', resp.data[0].username)
 		  console.log('acctype is: ' + resp.data[0].acctype)
 		  if(resp.data[0].acctype == 'company'){
-        console.log('whole data is: ' + resp.data[0].firstname)
+			localStorage.setItem('currentComp', resp.data[0].compname)
+			console.log('comp is: ' + resp.data[0].compname)
 			this.$router.push({ name: 'CleanHome', params : {id : resp.data[0].username }});
 		  }
 		   if(resp.data[0].acctype == 'client'){
-          this.$router.push({ name: 'Create', params : {id : resp.data[0].username }});
+          this.$router.push({ name: 'Home', params : {id : resp.data[0].username }});
         }
 		}
          // go to next page -> successful login

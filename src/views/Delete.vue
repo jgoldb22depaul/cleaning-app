@@ -1,33 +1,33 @@
 <template>
-  <div class="w-screen h-screen bg-blue-400">
+  <div class="w-screen h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#F8FFE5'}">
     <Header/>
     <div class="w-screen">
-      <div class="text-center invisible md:visible md:top-20 lg:visible font-bold text-2xl lg:m-10 text-white">
+      <div class="text-center invisible md:visible md:top-20 lg:visible font-bold text-3xl lg:m-10" :style="{ color: '#ECA72C'}">
         Update/Delete AirBnb Reservation 
       </div>
       <div v-if="result" class="md:relative md:top-12 lg:top-0">
         <form @submit.prevent="updatePost">
-          <div class="editor lg:mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-400 bg-white p-4 shadow-xl max-w-2xl">
-            <div class="w-full flex justify-between items-center mb-4">
+          <div class="editor lg:mt-10 mx-auto w-10/12 rounded-2xl flex flex-col p-4 shadow-xl max-w-2xl" :style="{ backgroundColor: '#E9967A'}">
+            <div class="w-full flex justify-between items-center mb-4 text-1xl text-bold" :style="{ color: '#F8FFE5'}">
               <label>Address:</label>
               <input type="text" v-model="address"  class="title w-10/12 border border-gray-400 text-gray-800 p-2 outline-none" :placeholder="result.address">
             </div>
-            <div class="w-full flex justify-between items-center mb-4">
+            <div class="w-full flex justify-between text-1xl text-bold items-center mb-4" :style="{ color: '#F8FFE5'}">
               <label>Zipcode:</label>
               <input type="text" v-model="zip"  class="title w-10/12 border border-gray-400 text-gray-800 p-2 outline-none" :placeholder="result.zipcode">
             </div>
-            <div class="w-full flex justify-between items-center mb-4">
+            <div class="w-full flex justify-between items-center mb-4 text-1xl " :style="{ color: '#F8FFE5'}">
               <label>Check Out Date:</label>
               <input type="date" v-model="date" class="title w-10/12  border border-gray-400 text-gray-800 p-2 outline-none" :placeholder="result.to_char">
             </div>
-            <div class="w-full flex justify-between items-center mb-4">
+            <div class="w-full flex justify-between items-center mb-4 text-1xl " :style="{ color: '#F8FFE5'}">
               <label>Check Out Time:</label>
               <input type="time" v-model="time" class="title w-10/12  border border-gray-400 text-gray-800 p-2 outline-none" :placeholder="result.checkouttime">
             </div>
             <div class="flex justify-end mt-5">
-              <input @click="cancel" type="button" value="Cancel" class="border border-gray-200 rounded-2xl py-2 px-4 font-thin cursor-pointer text-gray-700 ml-2 bg-gray-200 hover:bg-gray-300">
-              <input type="submit" value="Update" class="border border-purple-700 rounded-2xl py-2 px-4 font-thin cursor-pointer text-white ml-2 bg-blue-700 hover:bg-blue-600">
-              <input @click="deletePost" value="Delete" class="lol submit   rounded-2xl py-0 px-0 font-thin cursor-pointer text-white ml-2 mr-3 bg-purple-700 hover:bg-purple-600">
+              <input @click="cancel" type="button" value="Cancel" class="rounded-2xl py-2 px-4 font-thin cursor-pointer ml-2  hover:bg-gray-300" :style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
+              <input type="submit" value="Update" class="rounded-2xl py-2 px-4 font-thin cursor-pointer  ml-2  hover:bg-blue-600" :style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
+              <input @click="deletePost" value="Delete" class="lol submit rounded-2xl py-0 px-0 font-thin cursor-pointer ml-2 mr-3 hover:bg-purple-600" :style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
             </div>
           </div>
         </form>
