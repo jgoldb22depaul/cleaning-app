@@ -33,7 +33,7 @@
 import Header from '../components/Header.vue'
 import ApptHeader from '../components/ApptHeader.vue'
 import axios from '@/axios'
-import sgMail from "@sendgrid/mail";
+
 
 export default {
   components: {Header, ApptHeader},

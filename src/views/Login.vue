@@ -88,7 +88,6 @@
 
 <script>
 import axios from '@/axios'
-
 export default {
   
   data() {
@@ -100,7 +99,6 @@ export default {
     } 
   },
   mounted() {
-
     axios
         
         .get('/')
@@ -117,9 +115,6 @@ export default {
   //     })
   //     .catch(err => console.log(err.message))
   // },
-
-
-
   methods: {
     RequestLogin() {
       axios.post('/', {
@@ -134,6 +129,7 @@ export default {
           localStorage.setItem('currentUser', resp.data[0].username)
 		  console.log('acctype is: ' + resp.data[0].acctype)
 		  if(resp.data[0].acctype == 'company'){
+        console.log('whole data is: ' + resp.data[0].firstname)
 			this.$router.push({ name: 'CleanHome', params : {id : resp.data[0].username }});
 		  }
 		   if(resp.data[0].acctype == 'client'){
@@ -145,7 +141,6 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
-
       //convert data properties back into empty strings
       this.username = ''
       this.password = ''
@@ -156,5 +151,6 @@ export default {
 </script>
 
 <style></style>
+
 
 

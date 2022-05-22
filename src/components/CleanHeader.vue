@@ -2,6 +2,7 @@
   <div class="w-full lg:w-7/12 h-10 mx-auto items-center flex justify-around" >
     <router-link :to="{name: 'CleanHome', params: {id : username}}"><p class="" v-bind:style="{color: '#CC5500'}">Home</p></router-link>
 	<router-link :to="{name: 'Login', params: {id : username}}"><p class="" v-bind:style="{color: '#CC5500'}">Logout</p></router-link>
+  <router-link :to="{name: 'TimeSlot', params: {id : compname}}"><p class="" v-bind:style="{color: '#CC5500'}">Time Slots</p></router-link>
 	<router-link :to="{name: 'CleanAccountPage', params: {id : username}}"><p class="" v-bind:style="{color: '#CC5500'}">Account Settings</p></router-link>
   
   </div>
@@ -20,6 +21,8 @@ export default {
   data() {
     return {
       username: localStorage.currentUser || '' ,
+      compname: localStorage.currentUserName || '' ,
+      myCid: localStorage.myCid || 404,
       rating: 0
     } 
   }

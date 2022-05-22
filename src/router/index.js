@@ -22,6 +22,7 @@ import Complete from '../views/Complete.vue'
 import CreateRateReview from '../views/CreateRateReview.vue'
 import CreateRate from '../views/CreateRate.vue'
 import CompanyPage from '../views/CompanyPage.vue'
+import TimeSlot from '../views/TimeSlot.vue'
 
 const routes = [
   { 
@@ -35,9 +36,15 @@ const routes = [
     component: Reschedule
   },
   { 
-    path: '/CompanyPage/:id/:cid',
+    path: '/CompanyPage/:id',
     name: 'CompanyPage',
     component: CompanyPage,
+    props: true
+  },
+  { 
+    path: '/TimeSlot/:id',
+    name: 'TimeSlot',
+    component: TimeSlot,
     props: true
   },
   { 
