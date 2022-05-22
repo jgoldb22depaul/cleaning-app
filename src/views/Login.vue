@@ -134,6 +134,8 @@ export default {
           localStorage.setItem('currentUser', resp.data[0].username)
 		  console.log('acctype is: ' + resp.data[0].acctype)
 		  if(resp.data[0].acctype == 'company'){
+			localStorage.setItem('currentComp', resp.data[0].compname)
+			console.log('comp is: ' + resp.data[0].compname)
 			this.$router.push({ name: 'CleanHome', params : {id : resp.data[0].username }});
 		  }
 		   if(resp.data[0].acctype == 'client'){
