@@ -72,7 +72,8 @@ export default {
         .get('/getavail', {
           params: {
             date: this.checkoutDate,
-            cid: this.cleaningService
+            cid: this.cleaningService,
+            duration: this.timeToMins(localStorage.duration) / 60
           }
         })
         .then((resp) => {
@@ -85,7 +86,11 @@ export default {
         localStorage.setItem('times', this.selectedtime)
         localStorage.setItem('dates', this.checkoutDate)
         this.$router.push({ name: 'Finalize' });
-    }
+    },
+    timeToMins(time) {
+        var b = time.split(':');
+        return b[0]*60 + +b[1];
+    },
   }
 }
 </script>

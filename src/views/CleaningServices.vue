@@ -5,22 +5,22 @@
       <div class="w-full overflow-x-auto sm:-mx-6 lg:mx-auto lg:mt-12"  >
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8" >
           <div class="shadow overflow-hidden  sm:rounded-lg" >
-            <table class="min-w-full zui-table zui-table-horizontal zui-table-highlight" :style="{ color: '#F8FFE5'}">
-              <thead :style="{ backgroundColor: '#ECA72A'}">
+            <table class="min-w-full zui-table zui-table-horizontal zui-table-highlight" >
+              <thead class="bg-gray-200 border">
               <tr>
-                <th scope="col" class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider" :style="{ color: '#F8FFE5', backgroundColor: '#E9967A'}">
+                <th scope="col" class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">
                   Cleaning Service
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider" :style="{ color: '#F8FFE5', backgroundColor: '#E9967A'}">
+                <th scope="col" class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">
                   Estimated Cost
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider" :style="{ color: '#F8FFE5', backgroundColor: '#E9967A'}">
+                <th scope="col" class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">
                   Overall Rating
                 </th>
-                <th scope="col" class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider" :style="{ color: '#F8FFE5', backgroundColor: '#E9967A'}">
+                <th scope="col" class="px-6 py-3 text-left text-sm font-medium uppercase tracking-wider">
                   Number of Bookings
                 </th>
-                <th scope="col" class="" :style="{ backgroundColor: '#E9967A'}">
+                <th scope="col" class="">
                   <button id="dropdownDefault"  v-on:click="dropdown = !dropdown" class=" text-bold hover:bg-yellow-800 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" type="button" :style = "{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}" >Sort By <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
 <!-- Dropdown menu -->
                   <div v-if="dropdown" id="dropdown"  class="z-10 absolute bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700">
@@ -48,12 +48,12 @@
                 </th>
               </tr>
               </thead>
-              <tbody :style="{backgroundColor: '#E9967A'}">
+              <tbody class="border" :style="{backgroundColor: 'white'}">
               <tr v-for="cleaningService in cleaningServices" :key="cleaningService.id" @click="goToModal(cleaningService)">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="ml-4">
-                      <div class="text-lg font-medium uppercase" :style="{ color: '#F8FFE5'}">
+                      <div class="text-lg font-medium uppercase">
                         {{ cleaningService.name}}
                       </div>
                     </div>
@@ -62,7 +62,7 @@
                 <td class="px-6 py-4 whitespace-nowrap" >
                   <div class="flex items-center">
                     <div class="ml-4">
-                      <div class="text-lg font-medium" :style="{ color: '#F8FFE5'}">
+                      <div class="text-lg font-medium">
                         ${{cleaningService.ratepersqft * sqft == 0 ? cleaningService.ratepersqft : (cleaningService.ratepersqft * sqft).toFixed(2)}}
                       </div>
                     </div>
@@ -71,7 +71,7 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="ml-4">
-                      <div class="text-sm font-medium" :style="{ color: '#F8FFE5'}">
+                      <div class="text-sm font-medium" >
                         <OverallRating :cid="cleaningService.id"/>
                       </div>
                     </div>
@@ -80,7 +80,7 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="ml-4">
-                      <div class="text-lg font-medium" :style="{ color: '#F8FFE5'}">
+                      <div class="text-lg font-medium">
                         <Count :cid="cleaningService.name"/>
                       </div>
                     </div>
@@ -140,18 +140,14 @@ export default {
 			        }
           })
         .then((resp) => {
-          console.log("inside then getcleaningServices");
-          console.log(resp);
           this.cleaningServices = resp.data;
         })
   },
 
 
   methods: {
-    SortByBookings: function () {
-        console.log('im inside sort')
-        let selector = '(SELECT COUNT(rid) from past_appts where cid = cleaningservices.name)'
-         axios
+    Sortby: function (selector) {
+      axios
         .get('/getCleaningServices', {
               params: {
 			          selector: selector
@@ -163,42 +159,23 @@ export default {
           console.log(resp);
           this.cleaningServices = resp.data;
         })
+    },
+    SortByBookings: function () {
+        let selector = '(SELECT COUNT(rid) from past_appts where cid = cleaningservices.name)'
+        this.Sortby(selector)
     },
     SortByOverall: function () {
-        console.log('im inside sort')
         let selector = '(Select coalesce(AVG(myAvg), .01) from (Select (Select AVG(myAverage) FROM (VALUES (cleanliness), (speed), (punctuality), (professionalism)) as TblAverage(myAverage)) from ratingsystem where cid = cleaningservices.id) as TblAverage(myAvg))'
-         axios
-        .get('/getCleaningServices', {
-              params: {
-			          selector: selector
-			        }
-          })
-        .then((resp) => {
-          localStorage.setItem("selector", selector);
-          console.log("inside then getcleaningServices");
-          console.log(resp);
-          this.cleaningServices = resp.data;
-        })
+        this.Sortby(selector)
     },
     SortByAttribute: function (attr) {
-        console.log('im inside sort', attr)
         let selector = `(select coalesce(AVG(${attr}), .01) from ratingsystem where cid = cleaningservices.id)`
-        axios
-        .get('/getCleaningServices', {
-              params: {
-			          selector: selector
-			        }
-          })
-        .then((resp) => {
-          localStorage.setItem("selector", selector);
-          console.log("inside then getcleaningServices");
-          console.log(resp);
-          this.cleaningServices = resp.data;
-        })
+        this.Sortby(selector)
     },
     goToModal(cleaningService){
-		localStorage.setItem("cleaningServiceEmail", cleaningService.email);
+		    localStorage.setItem("cleaningServiceEmail", cleaningService.email);
         localStorage.setItem("cleaningServiceName", cleaningService.name);
+        localStorage.setItem("cleaningServiceDuration", cleaningService.durationper);
         this.selectedCleaningService = cleaningService;
         this.$router.push({ name: 'CompanyPage', params: {id : localStorage.currentUser, cid : this.selectedCleaningService.id}});
     },
@@ -208,20 +185,20 @@ export default {
 
 <style>
 .zui-table {
-  border: solid 4px #CC5500;
+  
   border-collapse: collapse;
   border-spacing: 0;
   font: normal 16px Arial, sans-serif;
 }
 .zui-table thead th {
-  border: solid 4px #CC5500;
+ 
   color: #336B6B;
   padding: 10px;
   text-align: left;
   
 }
 .zui-table tbody td {
-  border: solid 4px #CC5500;
+  
   padding: 10px;
 }
 .zui-table-highlight tbody tr:hover {

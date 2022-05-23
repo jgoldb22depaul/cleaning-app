@@ -74,19 +74,19 @@
                           </div>
                         </div>
                       </td> 
-                      <td class="px-4 py-2 whitespace-nowrap text-center text-sm font-medium hover:bg-red-50">
+                      <td class=" w-1/12 text-center text-sm font-medium hover:bg-red-50">
                         <router-link :to="{ name:'Delete', params: { id: result.rid } }">
-                          <div class="lg:p-2 rounded-2xl py-2 px-4 font-thin cursor-pointer ml-2 bg-gray-200 hover:bg-gray-300" :style = "{backgroundColor: '#FD3A4A', color: '#F8FFE5'}" >Update/Delete</div>     
+                          <div class="lg:p-2 rounded-2xl py-2 px-4 font-thin cursor-pointer ml-2 bg-gray-200 hover:bg-gray-300">Update/Delete</div>     
                         </router-link>                   
                       </td>    
-                      <td class="px-4 py-2 hover:bg-gray-100 whitespace-nowrap text-center text-sm font-medium">
-                        <router-link :to="{ name:'Appointment', params: { id: result.rid, sqft: result.sqft  } }">
-                          <div class="lg:p-2 rounded-2xl py-2 px-4 font-thin cursor-pointer ml-2 bg-gray-200 hover:bg-gray-300" :style = "{backgroundColor: '#FD3A4A', color: '#F8FFE5'}">Cleaning Appointment</div>     
+                      <td class="px-4 py-2 w-1/12 justify-center whitespace-nowrap text-center text-sm font-medium hover:bg-red-50">
+                        <router-link :to="{ name:'Appointment', params: { id: result.rid, sqft: result.sqft } }">
+                          <div class="lg:p-2 rounded-2xl py-2 px-4 font-thin cursor-pointer ml-2 bg-gray-200 hover:bg-gray-300">Cleaning Appointment</div>     
                         </router-link>                   
                       </td> 
 					   
 					  					  
-					  <td class="px-4 py-2 whitespace-nowrap text-center text-sm font-medium hover:bg-red-50">
+					  <td class="px-4 py-2  text-center text-sm font-medium hover:bg-red-50">
                           <input @click="MarkCompleted(result.rid)" type="button" value="Mark Complete" class=" rounded-2xl py-2 px-4 font-thin cursor-pointer ml-2 bg-gray-200 hover:bg-gray-300" :style = "{backgroundColor: '#FD3A4A', color: '#F8FFE5'}">   
 					  </td>
                       </tr>  

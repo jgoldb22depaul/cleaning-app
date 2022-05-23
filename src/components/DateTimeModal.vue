@@ -7,7 +7,7 @@
         
         <div class="text-center font-bold text-1xl m-10"> Find Availabilities for {{title}}?  </div>
         <span class = "tot flex justify-center ">starting cost: ${{rate.toFixed(2)}}</span>
-        
+        <span class = "tot flex justify-center ">expected time: {{expectedtime}}</span>
         <form @submit.prevent="save">
           <div class="flex justify-center mt-5">
               <input type="submit" value="Begin" class="rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2" v-bind:style="{ backgroundColor: '#FD3A4A'}">
@@ -21,6 +21,7 @@
 <script>
 import ApptHeader from '../components/ApptHeader.vue'
 import axios from '@/axios'
+import { exportDefaultDeclaration } from '@babel/types';
 export default {
   components: {ApptHeader},
   name: "DateTimeModal",
@@ -30,13 +31,12 @@ export default {
       cleaningTime: null,
       total: this.rate,
       results: [ ],
-      
+      expectedtime: localStorage.cleaningServiceDuration,
       postsNumber: null
     }
   },
   props: {
     cleaningService: String,
-    
     title: String,
     rate: Number,
     sqft: Number,
@@ -47,7 +47,8 @@ export default {
   },
 
   mounted() {
-   
+    this.expectedtime.substring(0, this.expectedtime.length - 3)
+    this.expectedtime = (this.timeFromMins(this.timeToMins(this.expectedtime) * Math.ceil(parseInt(localStorage.sqft) / parseInt(100))))
     document.addEventListener("keydown", (e) => {
       if (e.keyCode === 27) {
         this.$emit('close');
@@ -67,8 +68,22 @@ export default {
     save(){
         localStorage.setItem('basePrice', this.rate)
         localStorage.setItem('cleaningService', this.title)
+        localStorage.setItem('duration', this.expectedtime)
         this.$router.push({ name: 'ServiceOptions'});
-    }
+    },
+    timeToMins(time) {
+        var b = time.split(':');
+        return b[0]*60 + +b[1];
+    },
+    timeFromMins(mins) {
+        function z(n){return (n<10? '0':'') + n;}
+        var h = (mins/60 |0);
+        var m = mins % 60;
+        return z(h) + ':' + z(m);
+    },
+    addTimes(t0, t1) {
+        return this.timeFromMins(this.timeToMins(t0) + this.timeToMins(t1));
+    },
   }
 
 

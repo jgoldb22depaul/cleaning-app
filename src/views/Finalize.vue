@@ -14,9 +14,9 @@
         <li :style="{ color: '#F8FFE5'}">
             {{ Dates }}
         </li>
-        <div class="text-center font-bold text-2xl m-10" :style="{ color: '#F8FFE5'}"> The Time that works for you.  </div>
+        <div class="text-center font-bold text-2xl m-10" :style="{ color: '#F8FFE5'}"> The Timeframe that works for you.  </div>
         <li :style="{ color: '#F8FFE5'}">
-            {{ Times }}
+            {{ Times }} - {{end}}
         </li>
         <form @submit.prevent="save">
           <div class="flex justify-end mt-5">
@@ -47,7 +47,7 @@ export default {
       total: 0,
       results: [ ],
       Options: [],
-      postsNumber: null
+      end: ''
     } 
   },
   mounted() {
@@ -55,10 +55,10 @@ export default {
       this.username = localStorage.currentUserName;
     }
     this.Dates = localStorage.dates
-    this.Times = localStorage.times;
+    this.Times = localStorage.times.substring(0, localStorage.times.length - 3);
     this.total = localStorage.price;
     this.Options = JSON.parse(localStorage.getItem("options"))
-
+    this.end = (this.addTimes(localStorage.duration, this.Times))
   },
 
   methods: {
@@ -76,7 +76,8 @@ export default {
             cid: this.cleaningService,
             time: this.Times,
             date: this.Dates,
-            price: localStorage.getItem('price')
+            price: localStorage.getItem('price'),
+            end: this.end
           })
           .then((response) => {
 			this.sendConfirmationEmails();
@@ -84,6 +85,19 @@ export default {
           }, (error) => {
             console.log(error);
           });    
+    },
+    timeToMins(time) {
+        var b = time.split(':');
+        return b[0]*60 + +b[1];
+    },
+    timeFromMins(mins) {
+        function z(n){return (n<10? '0':'') + n;}
+        var h = (mins/60 |0) % 24;
+        var m = mins % 60;
+        return z(h) + ':' + z(m);
+    },
+    addTimes(t0, t1) {
+        return this.timeFromMins(this.timeToMins(t0) + this.timeToMins(t1));
     },
 	sendConfirmationEmails(){
       console.warn("INSIDE SEND EMAIL")

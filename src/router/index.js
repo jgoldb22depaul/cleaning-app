@@ -37,7 +37,7 @@ const routes = [
     component: Reschedule
   },
   { 
-    path: '/CompanyPage/:id',
+    path: '/CompanyPage/:id/:cid',
     name: 'CompanyPage',
     component: CompanyPage,
     props: true

@@ -27,10 +27,13 @@
                     <option>04:00</option>
                 </select>
             </label>
-            <input type="submit" value="Apply" class="flex-1 border rounded-2xl py-2 px-2 font-thin cursor-pointer text-white ml-2 bg-blue-700 hover:bg-blue-600" :style="{backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
             
-          </form>
+            <input type="submit" value="Apply" class="flex-1 border rounded-2xl py-2 px-2 font-thin cursor-pointer text-white ml-2 bg-blue-700 hover:bg-blue-600" :style="{backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
+            <div>
+            <span class="leading-1" v-if="check != null"> {{check}}</span>
+            </div>
           <div class="text-center font-bold text-2xl m-10">Which days do you want these hours applied? </div>
+          </form>
           <div class="  grid grid-cols-7 overflow-x-auto px-2 content-center ">
             <div v-for="(element, index) in items" :key="element.day" class="  w-1/7"  >
                     <div v-if="element.day" class="day-header h-16 grid grid-cols-1 px-2 overflow-x-auto bg-gray-100 content-evenly">
@@ -72,6 +75,27 @@
               </button>
           </div>
         </form>
+            <div class="text-center font-bold text-2xl m-10">How long does it take your service to clean?</div>
+            <label for="inc">duration per 100sqft
+                <select v-model="duration" id="inc" required class="bg-gray-100 w-24 h-12 border border-gray-300 p-2 mb-4 outline-none" spellcheck="false" >
+                    <option disabled value="">Please select one</option>
+                    <option>00:15</option>
+                    <option>00:30</option>
+                    <option>00:45</option>
+                    <option>01:00</option>
+                    <option>01:30</option>
+                    <option>02:00</option>
+                    
+                </select>
+            </label>
+            <form @submit.prevent="durationSave">
+            <div class="">
+              <span class="leading-1" v-if="message != null"> {{message}}</span>
+              <button type="submit" class="rounded-xl py-2 px-4 font-thin cursor-pointer text-sm  ml-2 bg-600" :style="{backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
+                Submit
+              </button>
+            </div>
+            </form>
         </div>
         
       
@@ -89,6 +113,7 @@ export default {
   
   data() {
     return {
+      check: null,
       compname: this.$route.params.id,
       cid: this.$route.params.cid,
       results: null,
@@ -100,6 +125,7 @@ export default {
       message: null,
       increment: '00:30',
       checkedIndexes: [],
+      duration: '01:00',
       items: [{ day: 'Sunday', Times: [] },
               { day: 'Monday', Times: [] }, 
               { day: 'Tuesday', Times: [] },
@@ -115,18 +141,19 @@ export default {
         .get('/getTimes', {
           params: {
             cid: this.compname,
-            
           }
         })
         .then((resp) => {
-          console.log(resp.data.items)
+          
           this.items = resp.data.items
         })
   },
   
   methods: {
      getTimes() {
-
+        if(this.checkedIndexes.length == 0){
+            this.check = 'please check the days you want these hours to apply to first'
+        }
         var currTime = this.start
         for(const index of this.checkedIndexes){
             this.items[index].Times = []
@@ -152,7 +179,21 @@ export default {
     addTimes(t0, t1) {
         return this.timeFromMins(this.timeToMins(t0) + this.timeToMins(t1));
     },
+    durationSave() {
+        console.log(this.duration);
+        axios
+          .post('/updateDuration', {
+            timeper: this.duration,
+            name: this.compname
+          })
+          .then((response) => {
+              this.message = 'successfully updated!'
+          }, (error) => {
+            console.log(error);
+          });   
+    },
     save(){
+        
         var empty = true;
         for (const item of this.items){
             if (item.Times.length != 0) empty = false
