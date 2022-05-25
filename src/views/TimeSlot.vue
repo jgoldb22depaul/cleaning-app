@@ -1,5 +1,5 @@
 <template>
-    <div class="w-screen h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#F8FFE5'}">
+    <div class="w-screen min-h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#F8FFE5'}">
 
     <Header/>
     
@@ -90,7 +90,7 @@
             </label>
             <form @submit.prevent="durationSave">
             <div class="">
-              <span class="leading-1" v-if="message != null"> {{message}}</span>
+              <span class="leading-1" v-if="message1 != null"> {{message1}}</span>
               <button type="submit" class="rounded-xl py-2 px-4 font-thin cursor-pointer text-sm  ml-2 bg-600" :style="{backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
                 Submit
               </button>
@@ -123,6 +123,7 @@ export default {
       start: '09:00',
       end: '17:00',
       message: null,
+      message1: null,
       increment: '00:30',
       checkedIndexes: [],
       duration: '01:00',
@@ -187,7 +188,7 @@ export default {
             name: this.compname
           })
           .then((response) => {
-              this.message = 'successfully updated!'
+              this.message1 = 'successfully updated!'
           }, (error) => {
             console.log(error);
           });   

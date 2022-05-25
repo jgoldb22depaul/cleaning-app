@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:style="{ backgroundColor: '#E9967A'}">
+    <div v-bind:style="{ backgroundColor: 'white'}">
         <Distribution :cid="cid"/>
         <div v-if="userReview" class="pad mx-8" > 
             <Review 

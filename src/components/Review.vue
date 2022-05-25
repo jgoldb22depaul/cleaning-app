@@ -1,5 +1,5 @@
 <template>
-    <div class="size" :style="{ backgroundColor: '#F8FFE5'}" v-if="!deleted">
+    <div class="size border bg-gray-100" v-if="!deleted">
         <div class="inner">
             <div class="flex">
                 <div class=" flex flex-1 flex-column" >

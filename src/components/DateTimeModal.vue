@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
   
-      <div class="vue-modal-content">
+      <div class="border border-gray-300 rounded-sm vue-modal-content">
         
         <br/>
         
@@ -66,6 +66,7 @@ export default {
         this.total+=this.rate
     },
     save(){
+         localStorage.setItem('options', null)
         localStorage.setItem('basePrice', this.rate)
         localStorage.setItem('cleaningService', this.title)
         localStorage.setItem('duration', this.expectedtime)
@@ -117,9 +118,9 @@ export default {
 .vue-modal-content {
   position: relative;
   background-color: white;
-  border: 1px solid;
+  
   border-radius:2px;
-  color: #F8FFEF;
+  
   background-clip: padding-box;
   border-radius: 0.3em;
   padding: 1em;

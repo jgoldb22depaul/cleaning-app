@@ -4,6 +4,7 @@
 	<router-link :to="{name: 'CleanSchedule', params: {id : username}}"><p class="" v-bind:style="{color: '#CC5500'}">Schedule</p></router-link>
 	<router-link :to="{name: 'Login', params: {id : username}}"><p class="" v-bind:style="{color: '#CC5500'}">Logout</p></router-link>
   <router-link :to="{name: 'TimeSlot', params: {id : compname}}"><p class="" v-bind:style="{color: '#CC5500'}">Time Slots</p></router-link>
+  <router-link :to="{name: 'CleanOptions', params: {id : compname}}"><p class="" v-bind:style="{color: '#CC5500'}">Cleaning Options</p></router-link>
 	<router-link :to="{name: 'CleanAccountPage', params: {id : username}}"><p class="" v-bind:style="{color: '#CC5500'}">Account Settings</p></router-link>
   
   </div>
