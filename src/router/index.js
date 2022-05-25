@@ -25,11 +25,23 @@ import CreateRate from '../views/CreateRate.vue'
 import CompanyPage from '../views/CompanyPage.vue'
 import TimeSlot from '../views/TimeSlot.vue'
 import CleanOptions from '../views/CleanOptions.vue'
+import CleanPast from '../views/CleanPast.vue'
+import CleanReviews from '../views/CleanReviews.vue'
 const routes = [
   { 
     path: '/',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/CleanPast/:id',
+    name: 'CleanPast',
+    component: CleanPast
+  },
+  {
+    path: '/CleanReviews/:id',
+    name: 'CleanReviews',
+    component: CleanReviews
   },
   { 
     path: '/Reschedule/:id',

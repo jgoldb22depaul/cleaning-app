@@ -58,6 +58,7 @@ export default {
     } 
   },
   mounted() {
+    console.log('hello', this.cid)
       axios
 		.get('/getRatings', {
 			params: {

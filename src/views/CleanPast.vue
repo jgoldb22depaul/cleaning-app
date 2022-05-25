@@ -1,7 +1,7 @@
 <template>
   <div class="w-screen h-screen bg-400" :style="{ backgroundColor: '#E9967A'}">
     <CleanHeader/>
-    <p class="relative top-12 text-center font-bold text-4xl m-5" :style="{ color: '#F8FFE5'}">List of your appointments</p>
+    <p class="relative top-12 text-center font-bold text-4xl m-5" :style="{ color: '#F8FFE5'}">Your past appointments</p>
     <div class="flex flex-col">
       <div class="w-full overflow-x-auto sm:-mx-6 lg:mx-auto lg:mt-12">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -9,49 +9,27 @@
             <table class="min-w-full">
               <thead :style="{ backgroundColor: '#ECA72A'}">
                 <tr :style="{ color: '#F8FFE5'}">
+                  
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                    address
+                    price
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                    zipcode
+                    Date
                   </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                    sqft
-                  </th>
-                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                    Check Out Date
-                  </th>
-                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                    Check Out Time
+                    Time
                   </th>
                   
                 </tr>
               </thead>
               <tbody :style="{ backgroundColor: '#F8FFE5'}">       
-                  <tr v-for="(result, index) in results" :key="result.uid" :style="{ color: '#CC5500'}">
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                          <div class="ml-4">
-                            <div class="text-sm font-medium uppercase">
-                              {{ result.address }}         
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                          <div class="ml-4">
-                            <div class="text-sm font-medium ">
-                              {{ result.zipcode }}         
-                            </div>
-                          </div>
-                        </div>
-                      </td>
+                  <tr v-for="result in results" :key="result.uid" :style="{ color: '#CC5500'}">
+                      
                       <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">
                           <div class="ml-4">
                             <div class="text-sm font-medium">
-                              {{ result.sqft }}         
+                              ${{ parseInt(result.price) }}          
                             </div>
                           </div>
                         </div>
@@ -69,14 +47,12 @@
                         <div class="flex items-center">
                           <div class="ml-4">
                             <div class="text-sm font-medium">
-                              {{ result.checkouttime }}         
+                              {{ result.time }}         
                             </div>
                           </div>
                         </div>
                       </td> 
-                        <td class="px-4 py-2 whitespace-nowrap text-center text-sm font-medium hover:bg-red-50">
-                          <input @click="CancelAppt(result.rid, index)" type="button" value="Cancel Appointment" class=" rounded-2xl py-2 px-4 font-thin cursor-pointer ml-2 bg-gray-200 hover:bg-gray-300" :style = "{backgroundColor: '#FD3A4A', color: '#F8FFE5'}">   
-                      </td>    
+                        
                       </tr>  
 					  		                       
               </tbody>
@@ -104,7 +80,7 @@ export default {
 	  appttime: '',
 	  apptdate: '',
 	  apptprice: 0,
-	  compname: '',
+	  compname: this.$route.params.id,
     resid: 0
     } 
   },
@@ -112,9 +88,9 @@ export default {
   mounted() {
     axios
         
-        .get('/cleanschedule', {
+        .get('/cleanpast', {
           params: {
-            uid: localStorage.currentUser
+            cid: this.compname
             
           }
         })
@@ -126,17 +102,13 @@ export default {
   },
 
   methods: {
-		CancelAppt(resid, index){
-      console.log(index, 'index')
+		CancelAppt(resid){
 			const confirmCancellation = confirm('Are you sure you want to cancel this appointment?')
 			if(confirmCancellation){
 				axios
 					.post('/cancelappt', {
 						resid: resid
 					})
-          .then((response) => {
-            this.results.splice(index, 1)
-        })
 				this.$router.push({ name: 'CleanSchedule', params: {id: localStorage.currentUser}});
 			}
 			
@@ -147,4 +119,3 @@ export default {
 </script>
 
 <style> </style>
-
