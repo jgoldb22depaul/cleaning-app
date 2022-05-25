@@ -9,7 +9,7 @@
 		<input type="text" id="new" required class="bg-gray-100 p-2 mb-4 outline-none" v-model="oldpassword" spellcheck="false" placeholder="current password">
 		<label for="newpassword" :style="{color: '#F8FFE5'}">New Password</label>
 		<input type="text" id="new" required class="bg-gray-100  p-2 mb-4 outline-none" v-model="newpassword" spellcheck="false" placeholder="new password">
-		<input type="submit" value="Submit" class="rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2" :style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
+		<input type="submit" value="Submit" class="rounded-xl py-2 px-4 w-1/5 font-thin cursor-pointer text-sm text-white ml-2" :style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
       </div>
     </form>
 	 <div id="deleteUser">

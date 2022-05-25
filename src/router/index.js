@@ -24,7 +24,7 @@ import CreateRateReview from '../views/CreateRateReview.vue'
 import CreateRate from '../views/CreateRate.vue'
 import CompanyPage from '../views/CompanyPage.vue'
 import TimeSlot from '../views/TimeSlot.vue'
-
+import CleanOptions from '../views/CleanOptions.vue'
 const routes = [
   { 
     path: '/',
@@ -46,6 +46,12 @@ const routes = [
     path: '/TimeSlot/:id',
     name: 'TimeSlot',
     component: TimeSlot,
+    props: true
+  },
+  { 
+    path: '/CleanOptions/:id',
+    name: 'CleanOptions',
+    component: CleanOptions,
     props: true
   },
   { 

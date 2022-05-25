@@ -5,7 +5,7 @@
     <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 p-4 shadow-lg max-w-2xl" v-bind:style="{ backgroundColor: '#E9967A'}">
         <ApptHeader col = "pink" :style = "{color: '#F8FFE5'}"/>
         <div class="text-center font-bold text-2xl m-10" v-bind:style="{ color: '#F8FFE5'}"> Extra services offered by, {{cleaningService}}  </div>
-        <span class = "tot" :style="{ color: '#F8FFE5'}">${{ total }}</span>
+        <span class = "tot" :style="{ color: '#F8FFE5'}">${{ total.toFixed(0) }}</span>
         <label v-for="element in results" :key="element.id" class="label-checkbox" :class="{ 'checked': element.checked }" v-bind:style="{ color: '#F8FFE5',borderColor: '#F8FFE5'}" :for="element.id.toLowerCase()">
             <input type="checkbox" 
                 v-model="checkedNames" 
@@ -50,7 +50,11 @@ export default {
   mounted() {
      axios
 
-        .get('/options')
+        .get('/options', {
+          params: {
+            cid: this.cleaningService,
+          }
+        })
         .then((resp) => {
           console.log(resp);
           this.results = resp.data;
