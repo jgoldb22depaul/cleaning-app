@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#E9967A'}">
+  <div class="w-screen min-h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#E9967A'}">
     
     <div class="text-center font-bold text-6xl px-6 py-7" :style="{color: '#F8FFE5'}">Enter your login info.</div>
     <form @submit.prevent="RequestLogin">
