@@ -36,7 +36,7 @@
 
 <script>
 
-import Header from '../components/Header.vue'
+import Header from '../components/CleanHeader.vue'
 import ApptHeader from '../components/ApptHeader.vue'
 import axios from '@/axios'
 
