@@ -6,6 +6,7 @@
    <form @submit.prevent="CheckPassword">
       <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 p-4 shadow-lg max-w-2xl bg" v-bind:style="{ backgroundColor: '#CC5500'}">
         <input type="text" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="username" spellcheck="false" placeholder="Username">
+		<span class="leading-1" v-if="message != null" :style="{backgroundColor: '#F8FFE5', color: '#FD3A4A'}"> {{message}}</span>
         <input type="password" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="password" spellcheck="false" placeholder="Password">
 		 <input type="firstname" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="firstname" spellcheck="false" placeholder="First Name">
 		  <input type="lastname" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="lastname" spellcheck="false" placeholder="Last Name">
@@ -40,7 +41,8 @@ export default {
 	  ratepersqft: 0,
 	  email: '',
       users: [ ],
-      postsNumber: null
+      postsNumber: null,
+	  message: null
     } 
   },
   mounted() {
@@ -69,6 +71,9 @@ export default {
 	 const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 	 if(specialChars.test(this.password)){
 	 this.RequestCreateAccount()}
+	 else{
+	 this.message = 'Password must be at least 8 characters and include at least 1 special character'
+	 }
 	 
   },
     RequestCreateAccount() {

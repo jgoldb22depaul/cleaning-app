@@ -14,12 +14,13 @@
 		</div>
 	  </div>
     </form>
+	
 	 <div id="deleteUser">
 	 <br>
 		<button v-on:click="requestDeleteUser()" class = "rounded-xl py-4 px-8 font-bold cursor-pointer text-sm text-white ml-2" :style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">Delete Account</button>
  </div>
     </div>
-	
+	<span class="leading-1" v-if="badPass != null" :style="{backgroundColor: '#F8FFE5', color: '#FD3A4A'}"> {{message}}</span>
 </template>
 
 <script> 
@@ -32,7 +33,9 @@ export default {
     return {
       username: '',
 	   oldpassword: '',
-	  newpassword: ''
+	  newpassword: '',
+	  badPass: null,
+	  wrongPass: null
 	   } 
   },
   methods: {
@@ -40,6 +43,9 @@ export default {
 	 const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 	 if(specialChars.test(this.newpassword)){
 	 this.changePassword()}
+	 else{
+	 this.badPass = 'Password must be at least 8 characters and include at least 1 special character'
+	 }
 	 
   },
 	changePassword(){
