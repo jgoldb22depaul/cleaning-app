@@ -7,7 +7,8 @@
         <div class="text-center font-bold text-2xl m-10" :style="{ color: '#F8FFE5'}"> Which date are you available? </div>
         <div class="w-full lg:w-7/12 h-10 mx-auto items-center flex justify-around">
             <input type="date" 
-                id="date" 
+                id="date"
+                :min="referenceDate"
                 required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" 
                 v-model="checkoutDate" 
                 spellcheck="false"
@@ -48,6 +49,7 @@ export default {
      selectedtime: '',
       checkoutDate: '',
       cleaningService: localStorage.cleaningService,
+      referenceDate: localStorage.getItem('checkoutDate'),
       total: 0,
       
       checkedNames: [],
