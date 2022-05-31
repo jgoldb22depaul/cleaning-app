@@ -107,6 +107,7 @@ export default {
             id: this.id
           })
           .then((response) => {
+            this.getEmail(this.id);
             console.log('successful delete')
             this.$router.push({ name: 'GetAll' });
             
@@ -117,6 +118,40 @@ export default {
     },
     cancel() {
       this.$router.push({ name: 'GetAll' });
+    },
+
+    sendConfirmationEmails(cleanerEmail, cleanerName){
+      console.warn("INSIDE SEND EMAIL")
+      axios.post('/sendEmail/', {
+
+        Times: this.time,
+        Dates: this.date,
+        Address: this.address,
+        CleanerEmail: cleanerEmail,
+        CleanerName: cleanerName,
+        UserEmail: localStorage.getItem('currentUserEmail'),
+        isDelete: true
+      })
+          .then((response) => {
+            console.log(response.status);
+          }, (error) => {
+            console.warn(error);
+          });
+    },
+    getEmail(rid) {
+      axios
+          .get('/getCleaningServiceByRid', {
+            params: {
+              id: rid,
+
+            }
+          })
+          .then((resp) => {
+            console.log(resp)
+            let cleanerEmail = resp.data.email;
+            let cleanerName = resp.data.name;
+            this.sendConfirmationEmails(cleanerEmail, cleanerName);
+          })
     }
   }
 }

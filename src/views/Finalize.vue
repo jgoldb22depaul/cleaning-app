@@ -108,7 +108,8 @@ export default {
         Address: localStorage.getItem('address'),
         CleanerEmail: localStorage.getItem("cleaningServiceEmail"),
         CleanerName: localStorage.getItem('cleaningServiceName'),
-        UserEmail: localStorage.getItem('currentUserEmail')
+        UserEmail: localStorage.getItem('currentUserEmail'),
+        isDelete: false
       })
       .then((response) => {
         console.log(response.status);
