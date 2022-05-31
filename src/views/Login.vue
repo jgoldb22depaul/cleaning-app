@@ -1,9 +1,9 @@
 <template>
-  <div class="w-screen h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#E9967A'}">
+  <div class="w-screen min-h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#E9967A'}">
     
     <div class="text-center font-bold text-6xl px-6 py-7" :style="{color: '#F8FFE5'}">Enter your login info.</div>
     <form @submit.prevent="RequestLogin">
-      <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 p-4 shadow-lg max-w-2xl bg" v-bind:style="{ backgroundColor: 'white'}">
+      <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 p-4 shadow-lg max-w-2xl bg" v-bind:style="{ backgroundColor: '#CC5500'}">
         <input type="text" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="username" spellcheck="false" placeholder="Username">
         <input type="password" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="password" spellcheck="false" placeholder="Password">
         <div class="flex justify-end mt-5">
@@ -11,6 +11,7 @@
         </div>
       </div>
     </form>
+	 <span class="leading-1 text-6sm" v-if="loginError != null" :style="{backgroundColor: '#F8FFE5', color: '#FD3A4A'}"> {{loginError}}</span>
     <div class="flex flex-col">
       <div class="w-full overflow-x-auto sm:-mx-6 lg:mx-auto lg:mt-12">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -95,7 +96,8 @@ export default {
       username: '',
       password: '',
       users: [ ],
-      postsNumber: null
+      postsNumber: null,
+	  loginError: null
     } 
   },
   mounted() {
@@ -136,6 +138,9 @@ export default {
 		   if(resp.data[0].acctype == 'client'){
           this.$router.push({ name: 'Home', params : {id : resp.data[0].username }});
         }
+		}
+		else{
+			this.loginError = 'Could not find that username and password'
 		}
          // go to next page -> successful login
       })

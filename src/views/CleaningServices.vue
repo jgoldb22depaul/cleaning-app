@@ -101,8 +101,6 @@
           </div>
         </div>
       </div>
-      <DateTimeModal :cleaningService="selectedCleaningService" :title="title" :rate="rate" v-show="showModal" @close="showModal = false" @bookIt="goToFinalPage">
-      </DateTimeModal>
     </div>
   </div>
 
