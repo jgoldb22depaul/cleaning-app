@@ -5,6 +5,7 @@
 	<p class="relative top-5 text-1xl lg:text-3xl font-bold" :style="{color: '#ECA72C'}"> Change Account Password: </p>
 	<form @submit.prevent="CheckPassword">
       <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 p-4 shadow-lg max-w-2xl" :style="{ backgroundColor: '#E9967A'}">
+	  <span class="leading-1" v-if="wrongPass != null" :style="{backgroundColor: '#F8FFE5', color: '#FD3A4A'}"> {{wrongPass}}</span>
         <label for="oldpassword" :style="{color: '#F8FFE5'}">Old Password</label>
 		<input type="text" id="new" required class="bg-gray-100 p-2 mb-4 outline-none" v-model="oldpassword" spellcheck="false" placeholder="current password">
 		<label for="newpassword" :style="{color: '#F8FFE5'}">New Password</label>
@@ -12,6 +13,7 @@
 		<input type="submit" value="Submit" class="rounded-xl py-2 px-4 w-1/5 font-thin cursor-pointer text-sm text-white ml-2" :style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
       </div>
     </form>
+	<span class="leading-1" v-if="badPass != null" :style="{backgroundColor: '#F8FFE5', color: '#FD3A4A'}"> {{badPass}}</span>
 	 <div id="deleteUser">
 	 <br>
 		<button v-on:click="requestDeleteUser()" class = "rounded-xl py-4 px-8 font-bold cursor-pointer text-sm text-white ml-2" :style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">Delete Account</button>
@@ -29,16 +31,25 @@ export default {
   data() {
     return {
       username: '',
+	  oldPassInput: '',
 	   oldpassword: '',
 	  newpassword: '',
-	  compname: ''
+	  compname: '',
+	  badPass: null,
+	  wrongPass: null
 	   } 
   },
   methods: {
   CheckPassword(){
 	 const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-	 if(specialChars.test(this.newpassword)){
+	 if(specialChars.test(this.newpassword) && (this.oldPassInput == this.oldpassword)){
 	 this.changePassword()}
+	 else if (!specialChars.test(this.newpassword)) {
+	 this.badPass = 'Password must be at least 8 characters and include at least 1 special character'
+	 }
+	 else if (this.oldPassInput != this.oldpassword){
+	 this.wrongPass = 'Current password is not correct!'
+	 }
 	 
   },
 	changePassword(){
@@ -92,6 +103,7 @@ export default {
 		.then((resp) => {
 			console.log('result for comp is ' + resp.data[0].compname);
 			this.compname = resp.data[0].compname;
+			this.oldPassInput = resp.data[0].password;
           }, (error) => {
             console.log(error);
           });
