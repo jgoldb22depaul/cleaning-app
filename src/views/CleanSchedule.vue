@@ -1,7 +1,7 @@
 <template>
-  <div class="w-screen h-screen bg-400" :style="{ backgroundColor: '#E9967A'}">
+  <div class="w-screen h-screen bg-400" :style="{ backgroundColor: '#F8FFE5'}">
     <CleanHeader/>
-    <p class="relative top-12 text-center font-bold text-4xl m-5" :style="{ color: '#F8FFE5'}">List of your appointments</p>
+    <p class="relative top-12 text-center font-bold text-4xl m-5" :style="{ color: '#ECA72A'}">List of your appointments</p>
     <div class="flex flex-col">
       <div class="w-full overflow-x-auto sm:-mx-6 lg:mx-auto lg:mt-12">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -27,7 +27,7 @@
                   
                 </tr>
               </thead>
-              <tbody :style="{ backgroundColor: '#F8FFE5'}">       
+              <tbody :style="{ backgroundColor: 'white'}">       
                   <tr v-for="(result, index) in results" :key="result.uid" :style="{ color: '#CC5500'}">
                       <td class="px-6 py-4 whitespace-nowrap">
                         <div class="flex items-center">

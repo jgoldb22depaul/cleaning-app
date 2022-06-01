@@ -3,7 +3,7 @@
     <Header/>
     <div class="text-center font-bold text-3xl m-10" :style="{color: '#ECA72A'}">What's the AirBnb reservation we need to work around?</div>
     <form @submit.prevent="createNewPost">
-      <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800  p-4 shadow-lg max-w-2xl " v-bind:style="{ backgroundColor: 'white'}">
+      <div class="mt-10 mx-auto w-1/3 rounded-2xl flex flex-col text-gray-800  p-4 shadow-lg max-w-2xl " v-bind:style="{ backgroundColor: 'white'}">
         <label for="address">Property Address</label>
         <input type="text" id="address" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="address" spellcheck="false" placeholder="123 cleanBnb St">
         <label for="zip">Zip Code</label>
@@ -11,7 +11,7 @@
                maxlength="5"
                @keydown="e=>fiveDigitFilter(e)">
         <label for="sqft">Square footage</label>
-        <input type="number" step="100" id="sqft" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="sqft" spellcheck="false" placeholder="sqft">
+        <input type="number" step="50" id="sqft" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="sqft" spellcheck="false" placeholder="sqft">
         <label for="date">Check Out Date</label>
         <input type="date" id="date" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="checkoutDate" spellcheck="false" placeholder="2020/08/11">
         <label for="time">Check Out Time</label>

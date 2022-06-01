@@ -6,13 +6,13 @@
   
   <form @submit.prevent="PostReview">
 	 
-    <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col p-4 shadow-lg max-w-2xl" v-bind:style="{ backgroundColor: '#E9967A'}">
+    <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col p-4 shadow-lg max-w-2xl" v-bind:style="{ backgroundColor: 'white'}">
 	<router-link :to="{name: 'GetAll'}" :style= "{ 'color' : '#F8FFE5'}"><p class="t">Skip this step.</p></router-link>
-	<div class="text-center font-bold text-2xl m-10"  v-bind:style="{ color: '#F8FFE5'}">Leave a review for your appointment with : {{cleanname}}</div>
-		<div class="text-center font-bold text-2xl m-10" v-bind:style="{ color: '#F8FFE5'}"> Review Subject Line:  </div>
+	<div class="text-center font-bold text-2xl m-10" >Leave a review for your appointment with : {{cleanname}}</div>
+		<div class="text-center font-bold text-2xl m-10" > Subject  </div>
        <input type="text" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="subject" spellcheck="false" placeholder="Write a brief subject for your review">
 
-        <div class="text-center font-bold text-2xl m-10" v-bind:style="{ color: '#F8FFE5'}"> Write Your Review:  </div>
+        <div class="text-center font-bold text-2xl m-10" > Review Body  </div>
 		<input type="text" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="review" spellcheck="false" placeholder="Write your review">
 
        <div class="flex justify-end mt-5">

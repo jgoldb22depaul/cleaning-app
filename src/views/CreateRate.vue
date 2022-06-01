@@ -2,7 +2,7 @@
   <div class="w-screen h-screen" v-bind:style="{ backgroundColor: '#F8FFE5'}">
   <Header/>
  
-  <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl" v-bind:style="{ backgroundColor: '#E9967A', color: '#F8FFE5'}">
+  <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl" v-bind:style="{ backgroundColor: 'white'}">
    <router-link :to="{name: 'GetAll'}" :style= "{ 'color' : '#F8FFE5'}"><p class="t">Skip this step.</p></router-link>
   <form @submit.prevent="PostRate">
   
