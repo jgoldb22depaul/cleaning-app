@@ -1,22 +1,22 @@
 <template>
-  <div class="w-screen h-screen bg-blue-400">
+  <div class="w-screen h-screen" v-bind:style="{ backgroundColor: '#F8FFE5'}">
   <Header/>
 
   
   
   <form @submit.prevent="PostReview">
 	 
-    <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl bg-white">
-	<router-link :to="{name: 'GetAll'}" :style= "{ 'color' : 'blue'}"><p class="t">Skip this step.</p></router-link>
-	<div class="text-center font-bold text-2xl m-10 text-blue">Leave a review for your appointment with : {{cleanname}}</div>
-		<div class="text-center font-bold text-2xl m-10"> Review Subject Line:  </div>
+    <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col p-4 shadow-lg max-w-2xl" v-bind:style="{ backgroundColor: '#E9967A'}">
+	<router-link :to="{name: 'GetAll'}" :style= "{ 'color' : '#F8FFE5'}"><p class="t">Skip this step.</p></router-link>
+	<div class="text-center font-bold text-2xl m-10"  v-bind:style="{ color: '#F8FFE5'}">Leave a review for your appointment with : {{cleanname}}</div>
+		<div class="text-center font-bold text-2xl m-10" v-bind:style="{ color: '#F8FFE5'}"> Review Subject Line:  </div>
        <input type="text" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="subject" spellcheck="false" placeholder="Write a brief subject for your review">
 
-        <div class="text-center font-bold text-2xl m-10"> Write Your Review:  </div>
+        <div class="text-center font-bold text-2xl m-10" v-bind:style="{ color: '#F8FFE5'}"> Write Your Review:  </div>
 		<input type="text" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="review" spellcheck="false" placeholder="Write your review">
 
        <div class="flex justify-end mt-5">
-          <input type="submit" value="Submit" class="border border-gray-200 rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-indigo-600">
+          <input type="submit" value="Submit" class=" rounded-xl py-2 px-4 font-thin cursor-pointer text-sm ml-2"  v-bind:style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
         </div> 
     </div>
 	 

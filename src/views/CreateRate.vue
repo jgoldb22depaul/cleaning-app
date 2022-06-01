@@ -1,13 +1,13 @@
 <template>
-  <div class="w-screen h-screen bg-blue-400">
+  <div class="w-screen h-screen" v-bind:style="{ backgroundColor: '#F8FFE5'}">
   <Header/>
  
-  <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl bg-white">
-   <router-link :to="{name: 'GetAll'}" :style= "{ 'color' : 'blue'}"><p class="t">Skip this step.</p></router-link>
+  <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl" v-bind:style="{ backgroundColor: '#E9967A', color: '#F8FFE5'}">
+   <router-link :to="{name: 'GetAll'}" :style= "{ 'color' : '#F8FFE5'}"><p class="t">Skip this step.</p></router-link>
   <form @submit.prevent="PostRate">
   
   
-  <div class="text-center font-bold text-2xl m-10 text-blue">Leave a rating for your appointment with: {{cleanname}}</div>
+  <div class="text-center font-bold text-2xl m-10">Leave a rating for your appointment with: {{cleanname}}</div>
   <transition name="fade">
   <div class="modal modal-open vue-modal">
     <div class="vue-modal-inner">
@@ -72,7 +72,7 @@
   </div>
   </transition>
    <div class="flex justify-end mt-5">
-          <input type="submit" value="Submit" class="border border-gray-200 rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-indigo-600">
+          <input type="submit" value="Submit" class="rounded-xl py-2 px-4 font-thin cursor-pointer text-sm ml-2"  v-bind:style="{ backgroundColor: '#FD3A4A', color: '#F8FFE5'}">
         </div>
  
   </form>
