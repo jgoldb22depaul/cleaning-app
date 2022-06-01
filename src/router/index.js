@@ -11,6 +11,7 @@ import Delete from '../views/Delete.vue'
 import NewAccount from '../views/NewAccount.vue'
 import NewCleanAccount from '../views/NewCleanAccount.vue'
 import CleaningServices from  '../views/CleaningServices'
+import CleaningServicesDisplay from  '../views/CleaningServicesDisplay'
 import ServiceOptions from '../views/ServiceOptions.vue'
 import CheckAvailable from '../views/CheckAvailable.vue'
 import Finalize from '../views/Finalize.vue'
@@ -23,6 +24,7 @@ import Complete from '../views/Complete.vue'
 import CreateRateReview from '../views/CreateRateReview.vue'
 import CreateRate from '../views/CreateRate.vue'
 import CompanyPage from '../views/CompanyPage.vue'
+import CompanyPageDisplay from '../views/CompanyPageDisplay.vue'
 import TimeSlot from '../views/TimeSlot.vue'
 import CleanOptions from '../views/CleanOptions.vue'
 import CleanPast from '../views/CleanPast.vue'
@@ -52,6 +54,12 @@ const routes = [
     path: '/CompanyPage/:id/:cid',
     name: 'CompanyPage',
     component: CompanyPage,
+    props: true
+  },
+  { 
+    path: '/CompanyPageDisplay/:id/:cid',
+    name: 'CompanyPageDisplay',
+    component: CompanyPageDisplay,
     props: true
   },
   { 
@@ -90,6 +98,11 @@ const routes = [
     path: '/cleaningServices/:id',
     name: 'CleaningServices',
     component: CleaningServices
+  },
+  {
+    path: '/cleaningServicesDisplay/:id',
+    name: 'CleaningServicesDisplay',
+    component: CleaningServicesDisplay
   },
   {
     path: '/newaccount',
