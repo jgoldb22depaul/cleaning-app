@@ -16,7 +16,7 @@
         <div class="text-center font-bold text-2xl m-10"> What times work best for you? </div>
         <li v-for="element in times" :key="element.timestart" class="label-checkbox" :class="{ 'checked': element.checked }" :style="{borderColor: '#F8FFE5'}">
           <input type="radio" name="radio1" :id="element.timestart.toLowerCase()" :value="element.timestart" v-model="selectedtime"  >
-          <label class="free-label four col" :for="element.timestart.toLowerCase()">{{element.timestart}}</label>
+          <label class="free-label four col" :for="element.timestart.toLowerCase()">{{element.timestart.substr(0, element.timestart.length - 3)}}</label>
         </li>
         <form @submit.prevent="save">
           <div class="flex justify-end mt-5">
@@ -41,13 +41,14 @@ export default {
   data() {
     return {
       valid :false,
-     times: [{timestart: 'no slots available for this date'}],
+     times: [{timestart: 'no slots available for this date   '}],
      cid: 'default',
      datesFromStorage: [],
       selectedtime: '',
       checkoutDate: '',
       cleaningService: localStorage.cleaningService,
       total: 0,
+      endtime: '',
       
       checkedNames: [],
 
@@ -82,13 +83,16 @@ export default {
         })
     },
     save(){
+      this.endtime = (this.addTimes(this.selectedtime.substr(0, this.selectedtime.length - 3), this.timeFromMins(localStorage.mydur * 60)))
+      console.log(this.endtime)
       const confirmDeletion = confirm('Reschule appointment?')
       if (confirmDeletion) {
         axios
           .post('/api/edit/app', {
             date: this.checkoutDate,
             time: this.selectedtime,
-            rid: localStorage.rid
+            rid: localStorage.rid,
+            endtime: this.endtime
           })
           .then((response) => {
             console.log('successful update')
@@ -98,7 +102,20 @@ export default {
             console.log(error);
           });
       }  
-    }
+    },
+    timeToMins(time) {
+        var b = time.split(':');
+        return b[0]*60 + +b[1];
+    },
+    timeFromMins(mins) {
+        function z(n){return (n<10? '0':'') + n;}
+        var h = (mins/60 |0) % 24;
+        var m = mins % 60;
+        return z(h) + ':' + z(m);
+    },
+    addTimes(t0, t1) {
+        return this.timeFromMins(this.timeToMins(t0) + this.timeToMins(t1));
+    },
   }
 }
 </script>

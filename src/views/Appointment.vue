@@ -76,7 +76,8 @@ export default {
               this.cleaningService =this.results.cid
               var f = ((this.timeToMins(this.endtime) - this.timeToMins(this.Times)) / 60)
               console.log(f)
-              localStorage.setItem("mydur", f); 
+              localStorage.setItem("mydur", parseInt(f)); 
+              localStorage.setItem("endtime", this.endtime); 
           } else {
 
           }
