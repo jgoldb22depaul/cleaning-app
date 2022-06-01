@@ -11,14 +11,12 @@ import Delete from '../views/Delete.vue'
 import NewAccount from '../views/NewAccount.vue'
 import NewCleanAccount from '../views/NewCleanAccount.vue'
 import CleaningServices from  '../views/CleaningServices'
-
 import ServiceOptions from '../views/ServiceOptions.vue'
 import CheckAvailable from '../views/CheckAvailable.vue'
 import Finalize from '../views/Finalize.vue'
 import AccountPage from '../views/AccountPage.vue'
 import CleanAccountPage from '../views/CleanAccountPage.vue'
 import Appointment from '../views/Appointment.vue'
-import DeleteAccount from '../views/DeleteAccount.vue'
 import Reschedule from '../views/Reschedule.vue'
 import Complete from '../views/Complete.vue'
 import CreateRateReview from '../views/CreateRateReview.vue'
@@ -68,11 +66,6 @@ const routes = [
     name: 'CleanOptions',
     component: CleanOptions,
     props: true
-  },
-  { 
-    path: '/deleteaccount',
-    name: 'DeleteAccount',
-    component: DeleteAccount
   },
    { 
     path: '/complete',
