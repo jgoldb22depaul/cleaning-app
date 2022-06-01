@@ -71,7 +71,8 @@ export default {
         .get('/getavail', {
           params: {
             date: this.checkoutDate,
-            cid: this.cleaningService
+            cid: this.cleaningService,
+            duration: localStorage.mydur
           }
         })
         .then((resp) => {

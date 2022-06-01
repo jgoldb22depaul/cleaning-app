@@ -3,7 +3,7 @@
     <Header/>
     <div class="text-center font-bold text-3xl m-10" :style="{color: '#ECA72A'}">Viewing your appointment with, {{cleaningService}}</div>
     <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col p-4 shadow-lg max-w-2xl" :style="{color: '#F8FFE5', backgroundColor: '#E9967A'}">
-        <router-link :to="{name: 'CleaningServices'}" :style= "{ 'color' : '#F8FFE5'}"><p class="t">Dont see a cleaning appointment? click here to make one.</p></router-link>
+        <router-link :to="{name: 'CleaningServices', params: {makingAppt : true}}" :style= "{ 'color' : '#F8FFE5'}"><p class="t">Dont see a cleaning appointment? click here to make one.</p></router-link>
         <div class="text-center font-bold text-2xl m-10"> Cleaning company.  </div>
             <li> {{cleaningService}}</li>
         <div class="text-center font-bold text-2xl m-10"> Appointment date.  </div>
@@ -12,7 +12,7 @@
         </li>
         <div class="text-center font-bold text-2xl m-10"> Appointment time.  </div>
         <li>
-            {{ Times }}
+            {{ Times }} - {{endtime}}
         </li>
         <div class="text-center font-bold text-2xl m-10"> Estimated price.  </div>
         <li>
@@ -45,6 +45,7 @@ export default {
       Dates: '',  
       ReservationInfo: [],
       Times: '',
+      endtime: '',
       total: 0,
       results: [ ],
       Options: [],
@@ -56,7 +57,6 @@ export default {
       if (this.sqft) localStorage.setItem("sqft", this.sqft); 
       
       localStorage.setItem("sqft", this.sqft);
-      console.log(this.id, 'hello')
        axios
         .get('/api/app/one', {
           params: {
@@ -65,15 +65,18 @@ export default {
           }
         })
         .then((resp) => {
-          console.log(resp)
          
           this.results = resp.data.data
           if (this.results) {
               localStorage.setItem("cleaningService", this.results.cid); 
               this.Dates = this.results.to_char
-              this.Times = this.results.time
+              this.Times = this.results.time.substr(0, this.results.time.length - 3)
+              this.endtime = this.results.endtime.substr(0, this.results.endtime.length - 3)
               this.total = this.results.price
               this.cleaningService =this.results.cid
+              var f = ((this.timeToMins(this.endtime) - this.timeToMins(this.Times)) / 60)
+              console.log(f)
+              localStorage.setItem("mydur", f); 
           } else {
 
           }
@@ -83,6 +86,10 @@ export default {
   },
 
   methods: {
+     timeToMins(time) {
+        var b = time.split(':');
+        return b[0]*60 + +b[1];
+    },
     reschedule(){
       this.$router.push({ name: 'Reschedule' });  
     },

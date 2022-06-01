@@ -121,6 +121,7 @@ export default {
       selectedCleaningService: null,
       firstName: localStorage.getItem("currentUserName"),
       sqft: this.$route.params.sqft ||localStorage.sqft ,
+      making: this.$route.params.makingAppt,
       cleaningServices: [ ],
       showModal: false,
       title : '',
@@ -130,7 +131,7 @@ export default {
     }
   },
   mounted() {
-    
+    localStorage.setItem("making", this.making);
     axios
         .get('/getCleaningServices', {
               params: {
@@ -153,8 +154,6 @@ export default {
           })
         .then((resp) => {
           localStorage.setItem("selector", selector);
-          console.log("inside then getcleaningServices");
-          console.log(resp);
           this.cleaningServices = resp.data;
         })
     },

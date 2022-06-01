@@ -9,7 +9,7 @@
           <div class="w-2/3  mx-auto ">
             <ReviewFeed :cid="parseInt(cid)"/>
           </div>
-          <aside class="w-72">
+          <aside v-if="making == 'true'" class="w-72">
             <div class="fixed w-64">
             <DateTimeModal :cleaningService="results" :title="companyName" :rate="price" v-bind:style="{ backgroundColor: ''}">
             </DateTimeModal>
@@ -37,11 +37,13 @@ export default {
       cid: this.$route.params.cid,
       results: null,
       companyName: ' ',
-      price: 0
+      price: 0,
+      making: localStorage.making
       
     }
   },
   mounted() {
+    console.log(this.making)
     console.log(this.cid, 'helllllll buck')
     axios
         .get('/cleaningService/get', {
