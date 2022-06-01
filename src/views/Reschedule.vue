@@ -95,7 +95,7 @@ export default {
             endtime: this.endtime
           })
           .then((response) => {
-            console.log('successful update')
+            console.log('successful')
             this.$router.push({ name: 'Appointment' });
             
           }, (error) => {
