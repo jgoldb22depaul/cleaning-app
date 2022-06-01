@@ -11,7 +11,7 @@
                maxlength="5"
                @keydown="e=>fiveDigitFilter(e)">
         <label for="sqft">Square footage</label>
-        <input type="number" id="sqft" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="sqft" spellcheck="false" placeholder="sqft">
+        <input type="number" step="100" id="sqft" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="sqft" spellcheck="false" placeholder="sqft">
         <label for="date">Check Out Date</label>
         <input type="date" id="date" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="checkoutDate" spellcheck="false" placeholder="2020/08/11">
         <label for="time">Check Out Time</label>

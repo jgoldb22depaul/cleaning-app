@@ -2,16 +2,16 @@
   <div class="w-screen h-screen bg-400" id="app" v-bind:style="{ backgroundColor: '#E9967A'}">
 	<br>
 	<br>
-	<div class="text-center font-bold text-5xl px-6 py-7" v-bind:style="{color: '#F8FFE5'}">Create a new account for you cleaning company </div>
+	<div class="text-center font-bold text-4xl px-6 py-7" v-bind:style="{color: '#F8FFE5'}">Create a new account for you cleaning company </div>
    <form @submit.prevent="CheckPassword">
-      <div class="mt-10 mx-auto w-10/12 rounded-2xl flex flex-col text-gray-800 p-4 shadow-lg max-w-2xl bg" v-bind:style="{ backgroundColor: '#CC5500'}">
+      <div class="mt-10 mx-auto w-1/3 rounded-2xl flex flex-col text-gray-800 p-4 shadow-lg max-w-2xl bg" v-bind:style="{ backgroundColor: '#CC5500'}">
         <input type="text" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="username" spellcheck="false" placeholder="Username">
 		<span class="leading-1" v-if="message != null" :style="{backgroundColor: '#F8FFE5', color: '#FD3A4A'}"> {{message}}</span>
         <input type="password" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="password" spellcheck="false" placeholder="Password">
 		 <input type="firstname" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="firstname" spellcheck="false" placeholder="First Name">
 		  <input type="lastname" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="lastname" spellcheck="false" placeholder="Last Name">
 		  <input type="compname" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="compname" spellcheck="false" placeholder="Company Name">
-		  <input type="ratepersqft" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="ratepersqft" spellcheck="false" placeholder="$ Rate per Square Foot">
+		  <input type="number" step="0.25" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="ratepersqft" spellcheck="false" placeholder="$ Rate per Square Foot">
 		  <input type="email" required class="bg-gray-100 border border-gray-300 p-2 mb-4 outline-none" v-model="email" spellcheck="false" placeholder="Email">
         <div class="flex justify-end mt-5">
           <input type="submit" value="Submit" class="border border-gray-200 rounded-xl py-2 px-4 font-thin cursor-pointer text-sm text-white ml-2 bg-600"  v-bind:style="{ backgroundColor: '#FD3A4A'}">
@@ -20,7 +20,7 @@
     </form>
     <br>
    <div class="w-full lg:w-7/12 h-10 mx-auto items-center flex justify-around text-white">
-    <router-link :to="{name: 'Login'}"><p class="text-4xl" v-bind:style="{color: '#F8FFE5'}">Back to Login Page</p></router-link>
+    <router-link :to="{name: 'Login'}"><p class="text-xl pt-4" v-bind:style="{color: '#F8FFE5'}">Back to Login Page</p></router-link>
   </div>
   </div>
   
@@ -38,7 +38,7 @@ export default {
 	  firstname: '',
 	  lastname: '',
 	  compname: '',
-	  ratepersqft: 0,
+	  ratepersqft: '',
 	  email: '',
       users: [ ],
       postsNumber: null,
